@@ -1,6 +1,6 @@
-**Preparation / Framing
-Technical Review 1
-Gaby Clarke and Alex Hoppe**
+# Preparation / Framing
+## Technical Review 1
+## Gaby Clarke and Alex Hoppe**
 
 # Background and Context
 **Project Goal**
@@ -17,7 +17,7 @@ We are using the icalendar python library to parse .ics text files, which essent
 # Agenda
 1. Project overview
 2. Data parsing and management
-3. Data visualization
+3. Data visualization (+ ideation)
 
 # Questions
 - What information would be cool to have in a data visualization?
