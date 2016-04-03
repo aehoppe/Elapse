@@ -23,4 +23,4 @@ class Event(object):
             # self.location
 
     def __repr__(self):
-        return 'Event {}: start time:{}, end time:{}, duration:{}, location:{}, importance:{}'.format(self.name, self.timeZone, self.startTime, self.endTime, self.duration, self.location, self.importance)
+        return 'Event {}: start time:{}, end time:{}, duration:{}'.format(self.name, self.startTime, self.endTime, self.duration)
