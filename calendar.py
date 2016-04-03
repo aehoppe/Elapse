@@ -23,8 +23,9 @@ class Calendar(object):
         f = open(filename+'.ics')
         cal = icalendar.cal.Component.from_ical(''.join([l for l in f]))
         vevent_list = cal.walk(name='VEVENT')
-        print str(vevent_list) + 'vevent list'
+        # print str(vevent_list) + 'vevent list'
         for vevent in vevent_list:
+            print vevent
             e = Event.Event(vevent)
             print e
             # self.events.append()

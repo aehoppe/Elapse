@@ -4,7 +4,7 @@
     author: Gaby Clarke, Alex Hoppe
 """
 
-def Event(object):
+class Event(object):
 
     def __init__(self, vevent, name=None, importance=None):
         self.name = name
@@ -15,10 +15,10 @@ def Event(object):
         # self.location = location
         self.importance = importance
         if vevent:
-            self.name = vevent['summary']
-            self.timeZone = vevent['dtstart']
-            self.startTime = vevent['dtstart']
-            self.endTime = vevent['dtend']
+            self.name = vevent.decoded('summary')
+            self.timeZone = vevent.decoded('tzid')
+            self.startTime = vevent.decoded('dtstart')
+            self.endTime = vevent.decoded('dtend')
             self.duration = self.endTime - self.startTime
             # self.location
 
