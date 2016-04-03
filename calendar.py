@@ -25,10 +25,8 @@ class Calendar(object):
         vevent_list = cal.walk(name='VEVENT')
         # print str(vevent_list) + 'vevent list'
         for vevent in vevent_list:
-            print vevent
             e = Event.Event(vevent)
-            print e
-            # self.events.append()
+            self.events.append(e)
 
 if __name__ == '__main__':
     c = Calendar('uocdtest')
