@@ -9,7 +9,7 @@
 - Documentation of ideation session was good
 
 ## Feedback and decisions
-Feedback
+Feedback:
 - Project seems well scoped
 - Good instructor feedback
   - Stick with native local data storage format unless we need extra features
@@ -23,6 +23,7 @@ Feedback
   - Scrolling time
   - Word clusters
   - Hourglass / sands of time
+
 The Plan:
 - Finish data structures
 - Get a basic visual something together before our next meeting
