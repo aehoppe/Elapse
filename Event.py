@@ -3,6 +3,7 @@
 
     author: Gaby Clarke, Alex Hoppe
 """
+import datetime
 
 class Event(object):
 
@@ -24,3 +25,12 @@ class Event(object):
 
     def __repr__(self):
         return 'Event {}: start time:{}, end time:{}, duration:{}'.format(self.name, self.startTime, self.endTime, self.duration)
+
+    def __cmp__(self, other):
+        if self.startTime > other.startTime:
+            return 1
+        elif self.startTime < other.startTime:
+            return -1
+        else:
+            return 0
+
