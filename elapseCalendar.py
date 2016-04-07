@@ -4,7 +4,7 @@
     author: Gaby Clarke, Alex Hoppe
 """
 import icalendar
-import event
+import Event as event
 
 class Calendar(object):
     def __init__(self, name, events=None):
