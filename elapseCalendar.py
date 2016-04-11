@@ -5,6 +5,7 @@
 """
 import icalendar
 import Event as event
+import os
 
 class Calendar(object):
     def __init__(self, name, events=None):
@@ -30,10 +31,9 @@ class Calendar(object):
             self.events.append(e)
 
 if __name__ == '__main__':
-    c = Calendar('softdestest')
-    c.parse_ical('softdes')
+    c = Calendar('Gaby')
     # try:
     #     print c.__repr__()
     # except:
     #     print 'repr failed'
-    print c
+    os.
