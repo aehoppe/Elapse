@@ -40,36 +40,6 @@ for i in range(7):
 
 print data
 
-# print [len(val) for key, val in data.items()]
-
-
-
-# times = []
-# for event in c.events:
-#     if type(event.startTime) is datetime.datetime:
-#         times.append(event.startTime)
-#         times.append(event.endTime)
-
-# times.sort()
-# print times
-
-
-
-# visEvents = []
-# for event in c.events:
-#     if event.startTime in visRange or event.endTime in visRange:
-#         visEvents.append(event)
-
-
-# calDelta = times[-1] - times[0]
-# dayDelta = calDelta.days
-
-# if calDelta.seconds or calDelta.microseconds:
-#     dayDelta += 1
-# print dayDelta
-
-
-
 
 stacked = vincent.StackedArea(data, iter_idx='index')
 stacked.axis_titles(x='Index', y='Data Value')
