@@ -22,7 +22,7 @@ class Calendar(object):
         return output
 
     def parse_ical(self, filename):
-        f = open(filename+'.ics')
+        f = open(filename)
         cal = icalendar.cal.Component.from_ical(''.join([l for l in f]))
         vevent_list = cal.walk(name='VEVENT')
         # print str(vevent_list) + 'vevent list'
@@ -31,6 +31,6 @@ class Calendar(object):
             self.events.append(e)
 
 if __name__ == '__main__':
-    c = Calendar('UOCD')
-    c.parse_ical('UOCD')
+    c = Calendar('UOCD.ics')
+    c.parse_ical('UOCD.ics')
     print(c)
