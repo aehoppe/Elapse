@@ -31,9 +31,6 @@ class Calendar(object):
             self.events.append(e)
 
 if __name__ == '__main__':
-    c = Calendar('Gaby')
-    # try:
-    #     print c.__repr__()
-    # except:
-    #     print 'repr failed'
-    os.
+    c = Calendar('UOCD')
+    c.parse_ical('UOCD')
+    print(c)
