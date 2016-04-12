@@ -7,6 +7,7 @@ Hopefully, we will soon have a link for you to click to use our app, but it's no
 
 ## Dependencies
 Elapse uses the following packages:
+- [Flask](http://flask.pocoo.org)
 - [icalendar](https://github.com/collective/icalendar) 
 - [vincent](https://github.com/wrobstory/vincent)
 
