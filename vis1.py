@@ -13,7 +13,9 @@ import os
 def vis1(filename,daterange=None):
     '''
     This function takes a file name (could be a file object in the future) and
-    parses its ical data into a Calendar with Events. It also takes
+    parses its ical data into a Calendar with Events. It also takes an optional
+    date range tuple of datetime objects that specify the length of time to be
+    visualized
     '''
     c = elapseCalendar.Calendar('vis1cal')
     c.parse_ical(filename)
