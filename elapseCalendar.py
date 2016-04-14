@@ -28,9 +28,9 @@ class Calendar(object):
     def parse_ical(self, filename):
         """ Parses an ical (.ics) file, and populates Calendar.events with Event objects.
 
-            filename: ical file to be parsed (without the file extension)
+            filename: ical file to be parsed
         """
-        f = open(filename+'.ics')
+        f = open(filename)
         cal = icalendar.cal.Component.from_ical(''.join([l for l in f]))
         vevent_list = cal.walk(name='VEVENT')
         for vevent in vevent_list:
@@ -39,5 +39,5 @@ class Calendar(object):
 
 
 if __name__ == '__main__':
-    c = Calendar('Gaby')
+    c = Calendar('Gaby.ics')
     print c.__repr__()
