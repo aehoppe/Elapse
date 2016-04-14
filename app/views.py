@@ -1,9 +1,17 @@
+""" Elapse
+    SoftDes Final Project
+
+    author: Gaby Clarke, Alex Hoppe
+"""
+
 from app import app
-from flask import request
+from flask import request, render_template
 from werkzeug import secure_filename
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
+
+# INDEX APP ROUTES
 @app.route('/')
 @app.route('/index')
 def index():
@@ -11,12 +19,15 @@ def index():
 
 
 class icalForm(Form):
+    """ ical file upload form """
     icalFile = FileField('Your ical', validators=[
         FileRequired(),
         FileAllowed(['ics'], '.ics files only')
     ])
 
 
+
+# ICAL UPLOAD PAGE
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     form = icalForm()
@@ -26,3 +37,9 @@ def upload():
     else:
         filename = None
     return render_template('upload.html', form=form, filename=filename)
+
+
+# VIS1 VIEW PAGE
+@app.route('/vis1')
+def vis1():
+    return render_template('templates/vis1.html')
