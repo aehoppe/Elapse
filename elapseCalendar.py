@@ -3,11 +3,15 @@
 
     author: Gaby Clarke, Alex Hoppe
 """
+
 import icalendar
 import Event as event
 import os
 
+
 class Calendar(object):
+    """ An object with calendar information and a list of Event objects. """    
+    
     def __init__(self, name, events=None):
         if events == None:
             events = []
@@ -22,18 +26,18 @@ class Calendar(object):
         return output
 
     def parse_ical(self, filename):
+        """ Parses an ical (.ics) file, and populates Calendar.events with Event objects.
+
+            filename: ical file to be parsed (without the file extension)
+        """
         f = open(filename+'.ics')
         cal = icalendar.cal.Component.from_ical(''.join([l for l in f]))
         vevent_list = cal.walk(name='VEVENT')
-        # print str(vevent_list) + 'vevent list'
         for vevent in vevent_list:
             e = event.Event(vevent)
             self.events.append(e)
 
+
 if __name__ == '__main__':
     c = Calendar('Gaby')
-    # try:
-    #     print c.__repr__()
-    # except:
-    #     print 'repr failed'
-    os.
+    print c.__repr__
