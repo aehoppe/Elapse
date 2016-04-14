@@ -40,4 +40,4 @@ class Calendar(object):
 
 if __name__ == '__main__':
     c = Calendar('Gaby')
-    print c.__repr__
+    print c.__repr__()
