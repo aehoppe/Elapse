@@ -65,7 +65,7 @@ def vis1(filename,daterange=None):
     stacked.axis_titles(x='Index', y='Data Value')
     stacked.legend(title='Categories')
     stacked.colors(brew='Spectral')
-    stacked.to_json('vis1.json', html_out=True, html_path='vis1.html')
+    stacked.to_json('vis1.json', html_out=True, html_path='app/templates/vis1.html')
 
     os.system('firefox vis1.html')
 
