@@ -20,6 +20,7 @@ Elapse makes heavy use of the following:
 - [vincent](https://github.com/wrobstory/vincent)
 
 Elapse's other dependencies are listed in [requirements.txt](https://github.com/aehoppe/Elapse/blob/master/requirements.txt). To install all dependencies, run the following on the command line:
+
     pip install -r requirements.txt
 
 ## Examples
