@@ -1,7 +1,8 @@
 """ Elapse
     SoftDes Final Project
 
-    Visualization 1
+    This file implements our first visualization, parsing an ics file and plots
+    the cumulative time spent on each activity in a stacked area chart.
 
     author: Gaby Clarke, Alex Hoppe
 """
@@ -14,11 +15,11 @@ def vis1(filename,daterange=None):
     '''
     This function takes a file name (could be a file object in the future) and
     parses its ical data into a Calendar with Events. It also takes an optional
-    date range tuple of datetime objects that specify the length of time to be
-    visualized
+    date range tuple of datetime objects. It plots the cumulative time for each
+    event in the range specified.
     '''
     c = elapseCalendar.Calendar('vis1cal')
-    c.parse_ical(filename)
+    c.parse_ical('cals/'+filename)
 
     # Take user input for dates
     if daterange == None:
@@ -69,4 +70,5 @@ def vis1(filename,daterange=None):
     os.system('firefox vis1.html')
 
 if __name__ == '__main__':
+    #debug test of parsing"
     vis1('Gaby.ics')
