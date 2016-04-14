@@ -3,9 +3,12 @@
 
     author: Gaby Clarke, Alex Hoppe
 """
+
 import datetime
 
+
 class Event(object):
+    """ An object with decoded event information from an ical event. """
 
     def __init__(self, vevent, name=None, importance=None):
         self.name = name
@@ -27,10 +30,10 @@ class Event(object):
         return 'Event {}: start time:{}, end time:{}, duration:{}'.format(self.name, self.startTime, self.endTime, self.duration)
 
     def __cmp__(self, other):
+        """ Compares two Event objects based on start time."""
         if self.startTime > other.startTime:
             return 1
         elif self.startTime < other.startTime:
             return -1
         else:
             return 0
-
