@@ -44,5 +44,5 @@ def vis1():
 
 # edit calendar event tags
 @app.route('/edit')
-def edit():
+def edit(cal):
     return render_template('templates/edit.html', events=cal.events)
