@@ -7,9 +7,19 @@
         // var dateRangeStart = document.getElementByID("dateRangeStart")
         // document.getElementById("dateRangeStart").value = new Date().toISOString().substring(0, 10);
         // document.getElementById("dateRangeEnd").value = document.getElementById("dateRangeStart").stepUp(7);
-        var x = document.getElementById("dateRangeStart");
-        print x
+        function loadStartDate() {
+            var dateRangeStart = document.getElementById("dateRangeStart").value;
+            console.log(dateRangeStart);
+            // document.getElementById("dateRangeEnd").value = 
+            // document.getElementById("dateRangeStart").stepUp(7);
+            // console.log(dateRangeStart);
+            var dateRangeEnd = document.getElementById("dateRangeEnd").value;
+            dateRangeEnd = dateRangeStart + 7
+            console.log(dateRangeEnd);
+        }
+        
     </script>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen" />
 </head>
 <body>
     <h3>
@@ -24,7 +34,7 @@
         <h5>
             Select a week to visualize
         </h5>
-        <input type="date" name="dateRangeStart" id="dateRangeStart" value="">
+        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" oninput="loadStartDate()">
         to
         <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="">
         <!-- {{ form.hidden_tag() }} -->
