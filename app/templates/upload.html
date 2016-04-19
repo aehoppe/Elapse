@@ -7,37 +7,42 @@
         // var dateRangeStart = document.getElementByID("dateRangeStart")
         // document.getElementById("dateRangeStart").value = new Date().toISOString().substring(0, 10);
         // document.getElementById("dateRangeEnd").value = document.getElementById("dateRangeStart").stepUp(7);
+        function loadFile() {
+            var icalFile = document.getElementById("icalFile").value;
+            console.log(icalFile);
+        }
         function loadStartDate() {
             var dateRangeStart = document.getElementById("dateRangeStart").value;
             console.log(dateRangeStart);
             // document.getElementById("dateRangeEnd").value = 
             // document.getElementById("dateRangeStart").stepUp(7);
             // console.log(dateRangeStart);
+        }
+        function loadEndDate() {
             var dateRangeEnd = document.getElementById("dateRangeEnd").value;
-            dateRangeEnd = dateRangeStart + 7
+            // dateRangeEnd = dateRangeStart + 7
             console.log(dateRangeEnd);
         }
         
     </script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
 </head>
 <body>
     <h3>
         Use Elapse
     </h3>
-    <form action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data" name="icalUpload">
+    <form action="/edit" method="POST" enctype="multipart/form-data" name="icalUpload">
         <h5>
             Upload your calender information as a .ics file
         </h5>
-        <input type="file" name="icalFile" required="True">
+        <input type="file" name="icalFile" required="True" id="icalFile" onchange="loadFile()">
         <br>
         <h5>
             Select a week to visualize
         </h5>
-        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" oninput="loadStartDate()">
+        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" onchange="loadStartDate()">
         to
-        <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="">
-        <!-- {{ form.hidden_tag() }} -->
+        <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" onchange="loadEndDate()">
         <input type="submit" value=">">
     </form>
 </body>
