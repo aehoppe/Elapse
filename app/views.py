@@ -9,14 +9,12 @@ from flask import request, render_template
 from werkzeug import secure_filename
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-import vis1 as Vis1
-
 
 # INDEX APP ROUTES
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return "Hello, World!"
 
 
 class icalForm(Form):
@@ -42,5 +40,9 @@ def upload():
 # VIS1 VIEW PAGE
 @app.route('/vis1')
 def vis1():
-    Vis1.vis1('softdes.ics')
-    return render_template('vis1.html')
+    return render_template('templates/vis1.html')
+
+# edit calendar event tags
+@app.route('/edit')
+def edit():
+    return render_template('templates/edit.html', events=cal.events)
