@@ -16,7 +16,7 @@ import vis1 as Vis1
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Hello, World!"
+    return render_template('index.html')
 
 
 class icalForm(Form):
@@ -25,7 +25,6 @@ class icalForm(Form):
         FileRequired(),
         FileAllowed(['ics'], '.ics files only')
     ])
-
 
 
 # ICAL UPLOAD PAGE
