@@ -17,23 +17,26 @@ def index():
     return "Hello, World!"
 
 
-class icalForm(Form):
-    """ ical file upload form """
-    icalFile = FileField('Your ical', validators=[
-        FileRequired(),
-        FileAllowed(['ics'], '.ics files only')
-    ])
+# class icalForm(Form):
+#     """ ical file upload form """
+#     icalFile = FileField('Your ical', validators=[
+#         FileRequired(),
+#         FileAllowed(['ics'], '.ics files only')
+#     ])
 
 
 # ICAL UPLOAD PAGE
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
-    form = icalForm()
-    if form.validate_on_submit():
-        filename = secure_filename(form.icalFile.data.filename)
-        form.icalFile.data.save('uploads/' + filename)
-    else:
-        filename = None
+    # form = icalForm()
+    # if form.validate_on_submit():
+    #     filename = secure_filename(form.icalFile.data.filename)
+    #     form.icalFile.data.save('uploads/' + filename)
+    # else:
+    #     filename = None
+
+    icalFile = request.form['icalFile']
+    
     return render_template('upload.html', form=form, filename=filename)
 
 
