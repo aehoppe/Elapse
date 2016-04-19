@@ -13,14 +13,14 @@ import datetime
 import os
 
 
-def vis1(filename, daterange=None):
+def visualize(filename, visualization, daterange=None):
     '''
     This function takes a file name (could be a file object in the future) and
-    parses its ical data into a Calendar with Events. It also takes an optional
-    date range tuple of datetime objects. It plots the cumulative time for each
-    event in the range specified.
+    parses its ical data into a Calendar with Events, and a visualization type
+    argument. It also takes an optional date range tuple of datetime objects. It
+     plots the cumulative time for each event in the range specified.
     '''
-    c = elapseCalendar.Calendar('vis1cal')
+    c = elapseCalendar.Calendar('stacked_vis_cal')
     c.parse_ical('cals/'+filename)
 
     # Set default timezone
@@ -60,16 +60,46 @@ def vis1(filename, daterange=None):
                         data[event.name] = [0 for day in range(len(daysIncluded)-1)]
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
+    # pick plot function
+    vizzes = {'stacked_area':stacked_area, 'donut':donut}
+
     # Make plot
+    plot = vizzes[visualization](data)
+    plot.to_json('vis.json', html_out=True, html_path='vis.html')
+
+def stacked_area(data):
+    """This function creates a stacked area plot visualization"""
     stacked = vincent.StackedArea(data, iter_idx='index')
     stacked.axis_titles(x='Index', y='Data Value')
     stacked.legend(title='Categories')
     stacked.colors(brew='Spectral')
-    stacked.to_json('vis1.json', html_out=True, html_path='vis1.html')
+    return stacked
 
-    # os.system('firefox vis1.html')
+def donut(data):
+    """This function creates a donut plot visualization"""
+    #total the time in each category and give it back as a Pandas dataframe
+    data = total_time(data)
+    donut = vincent.Pie(data, inner_radius=200)
+    donut.colors(brew="Set3")
+    donut.legend('Categories')
+    return donut
+
+def total_time(data):
+    """This function totals up the time in each category in the dataframe"""
+    new_data = {}
+    #total up the non-index categories
+    for key in data.keys():
+        if not key is 'index':
+            new_data[key] = sum(data[key])
+    return new_data
 
 
 if __name__ == '__main__':
+    import sys
     # Debug test of parsing
-    vis1('Gaby.ics')
+    try:
+        name = sys.argv[1]
+    except IndexError:
+        name = 'stacked_area'
+    visualize('Gaby.ics', name)
+    os.system('firefox vis.html')
