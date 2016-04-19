@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <h1>My Webpage</h1>
+
+    <ul id="events">
+        {% for event in events %}
+        <li>{{ event.repr }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
