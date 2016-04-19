@@ -80,7 +80,7 @@ def donut(data):
     #total the time in each category and give it back as a Pandas dataframe
     data = total_time(data)
     donut = vincent.Pie(data, inner_radius=200)
-    donut.colors(brew="Set2")
+    donut.colors(brew="Set3")
     donut.legend('Categories')
     return donut
 
@@ -88,11 +88,18 @@ def total_time(data):
     """This function totals up the time in each category in the dataframe"""
     new_data = {}
     #total up the non-index categories
-    for key, value in data if key not == 'index':
-        new_data[key] = sum(data[key])
+    for key in data.keys():
+        if not key is 'index':
+            new_data[key] = sum(data[key])
     return new_data
 
 
 if __name__ == '__main__':
+    import sys
     # Debug test of parsing
-    visualize('Gaby.ics', 'donut')
+    try:
+        name = sys.argv[1]
+    except IndexError:
+        name = 'stacked_area'
+    visualize('Gaby.ics', name)
+    os.system('firefox vis.html')
