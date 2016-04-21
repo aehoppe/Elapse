@@ -1,9 +1,6 @@
 """ Elapse
     SoftDes Final Project
 
-    This file implements our first visualization, parsing an ics file and plots
-    the cumulative time spent on each activity in a stacked area chart.
-
     author: Gaby Clarke, Alex Hoppe
 """
 
@@ -14,12 +11,11 @@ import os
 
 
 def visualize(filename, visualization, daterange=None):
-    '''
-    This function takes a file name (could be a file object in the future) and
+    """ Takes a file name (could be a file object in the future) and
     parses its ical data into a Calendar with Events, and a visualization type
-    argument. It also takes an optional date range tuple of datetime objects. It
-     plots the cumulative time for each event in the range specified.
-    '''
+    argument. It also takes an optional date range tuple of datetime objects. It 
+    plots the cumulative time for each event in the range specified. """
+    
     c = elapseCalendar.Calendar('stacked_vis_cal')
     c.parse_ical('cals/'+filename)
 
@@ -44,7 +40,7 @@ def visualize(filename, visualization, daterange=None):
     # Make labels
     dayStrings = [str(i) for i in range(visLen)]
 
-    # data = {'index': daysIncluded[:-1]}
+    # Initialize data dictionary with index values
     data = {'index': dayStrings}
 
     # Clean data (no date objects allowed) and accumulate total time
@@ -60,15 +56,18 @@ def visualize(filename, visualization, daterange=None):
                         data[event.name] = [0 for day in range(len(daysIncluded)-1)]
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
-    # pick plot function
+    # Dictionary of plotting functions
     vizzes = {'stacked_area':stacked_area, 'donut':donut}
 
     # Make plot
     plot = vizzes[visualization](data)
-    plot.to_json('vis.json', html_out=True, html_path='vis.html')
+    # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
+    plot.to_json('app/vis.json', html_out=False)
+
 
 def stacked_area(data):
-    """This function creates a stacked area plot visualization"""
+    """ Creates a stacked area plot visualization """
+    
     stacked = vincent.StackedArea(data, iter_idx='index')
     stacked.axis_titles(x='Index', y='Data Value')
     stacked.legend(title='Categories')
@@ -76,7 +75,8 @@ def stacked_area(data):
     return stacked
 
 def donut(data):
-    """This function creates a donut plot visualization"""
+    """ Creates a donut plot visualization """
+
     #total the time in each category and give it back as a Pandas dataframe
     data = total_time(data)
     donut = vincent.Pie(data, inner_radius=200)
@@ -85,7 +85,8 @@ def donut(data):
     return donut
 
 def total_time(data):
-    """This function totals up the time in each category in the dataframe"""
+    """ Totals up the time in each category in the dataframe """
+    
     new_data = {}
     #total up the non-index categories
     for key in data.keys():

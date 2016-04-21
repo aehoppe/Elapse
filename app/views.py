@@ -8,18 +8,17 @@ from app import app
 from flask import request, render_template
 from werkzeug import secure_filename
 from flask_wtf import Form
-# from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 icalFile = 'test'
 
-# INDEX APP ROUTES
+# INDEX
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-# ICAL UPLOAD PAGE
-@app.route('/upload', methods=['POST','GET'])
+# UPLOAD ICAL
+@app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
         print icalFile
@@ -32,7 +31,20 @@ def edit():
     print icalFile
     return render_template('edit.html', events=icalFile.events)
 
-# VIS1 VIEW PAGE
-@app.route('/vis1')
-def vis1():
-    return render_template('vis1.html')
+# CHOOSE A VISUALIZATION
+@app.route('/choose', methods=['POST', 'GET'])
+def choose():
+    if request.method == 'POST':
+        global visChoice
+        visChoice = request.form['visChoice']
+        print visChoice
+        if visChoice == 'stackedArea':
+            pass
+        if visChoice == 'donut':
+            pass
+    return render_template('choose.html')
+
+# SHOW VISUALIZATION
+@app.route('/visualize')
+def visualize():
+    return render_template('visualize.html')
