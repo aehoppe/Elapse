@@ -5,12 +5,22 @@
 """
 
 from app import app
-from flask import request, render_template
+from app import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
+from flask import request, render_template, redirect, url_for
 from werkzeug import secure_filename
 from flask_wtf import Form
-from visualize import visualize
+import visualize as vis
+import os
 
 icalFile = 'test'
+visChoice = 'donut'
+
+#+++++++++++++++++++++++++++++
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+#+++++++++++++++++++++++++++++
 
 # INDEX
 @app.route('/')
@@ -22,14 +32,24 @@ def index():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        print icalFile
-    return render_template('upload.html')
-
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join('app/uploads/cal.ics'))
+            return redirect(url_for('choose'))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form action="" method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-    print icalFile
     return render_template('edit.html', events=icalFile.events)
 
 # CHOOSE A VISUALIZATION
@@ -38,10 +58,11 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        visualize(filename, visChoice, dateRange)
+        vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice)
+        return redirect(url_for('visualize'))
     return render_template('choose.html')
 
 # SHOW VISUALIZATION
-@app.route('/visualize')
+@app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')

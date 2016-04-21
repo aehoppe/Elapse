@@ -13,11 +13,11 @@ import os
 def visualize(filename, visualization, daterange=None):
     """ Takes a file name (could be a file object in the future) and
     parses its ical data into a Calendar with Events, and a visualization type
-    argument. It also takes an optional date range tuple of datetime objects. It 
+    argument. It also takes an optional date range tuple of datetime objects. It
     plots the cumulative time for each event in the range specified. """
-    
+
     c = elapseCalendar.Calendar('stacked_vis_cal')
-    c.parse_ical('cals/'+filename)
+    c.parse_ical(filename)
 
     # Set default timezone
     tzDefault = c.events[0].startTime.tzinfo
@@ -62,12 +62,12 @@ def visualize(filename, visualization, daterange=None):
     # Make plot
     plot = vizzes[visualization](data)
     # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('vis.json', html_out=False)
+    plot.to_json('app/vis.json', html_out=False)
 
 
 def stacked_area(data):
     """ Creates a stacked area plot visualization """
-    
+
     stacked = vincent.StackedArea(data, iter_idx='index')
     stacked.axis_titles(x='Index', y='Data Value')
     stacked.legend(title='Categories')
@@ -86,7 +86,7 @@ def donut(data):
 
 def total_time(data):
     """ Totals up the time in each category in the dataframe """
-    
+
     new_data = {}
     #total up the non-index categories
     for key in data.keys():

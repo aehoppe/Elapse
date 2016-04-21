@@ -31,18 +31,18 @@
     <h3>
         Use Elapse
     </h3>
-    <form action="/view" method="POST" enctype="multipart/form-data" name="icalUpload">
+    <form action="" method="POST" enctype="multipart/form-data" name="icalUpload">
         <h5>
             Upload your calender information as a .ics file
         </h5>
-        <input type="file" name="icalFile" required="True" id="icalFile" onchange="loadFile()">
+        <input type="file" name="icalFile" id="icalFile" onchange="loadFile()" required>
         <br>
         <h5>
             Select a week to visualize
         </h5>
-        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" onchange="loadStartDate()">
+        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" onchange="loadStartDate()" required>
         to
-        <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" onchange="loadEndDate()">
+        <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" onchange="loadEndDate()" required>
         <input type="submit" value=">">
     </form>
 </body>
