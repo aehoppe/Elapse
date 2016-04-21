@@ -8,6 +8,7 @@ from app import app
 from flask import request, render_template
 from werkzeug import secure_filename
 from flask_wtf import Form
+from visualize import visualize
 
 icalFile = 'test'
 
@@ -22,6 +23,10 @@ def index():
 def upload():
     icalFile = request.form['icalFile']
     print icalFile
+    global filename
+    filename = '' #just for now...
+    global dateRange
+    dateRange = None #just for now...
     return render_template('upload.html')
 
 # EDIT CALENDAR EVENTS
@@ -37,11 +42,7 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        print visChoice
-        if visChoice == 'stackedArea':
-            pass
-        if visChoice == 'donut':
-            pass
+        visualize(filename, visChoice, dateRange)
     return render_template('choose.html')
 
 # SHOW VISUALIZATION
