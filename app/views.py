@@ -20,11 +20,8 @@ def index():
 # UPLOAD ICAL
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
-    if request.method == 'POST':
-        global icalFile
-        print request.form['icalFile']
-        icalFile = request.form['icalFile']
-        print icalFile
+    icalFile = request.form['icalFile']
+    print icalFile
     return render_template('upload.html')
 
 # EDIT CALENDAR EVENTS
@@ -51,8 +48,3 @@ def choose():
 @app.route('/visualize')
 def visualize():
     return render_template('visualize.html')
-
-# VIS1 VIEW PAGE
-@app.route('/vis1')
-def vis1():
-    return render_template('vis1.html')
