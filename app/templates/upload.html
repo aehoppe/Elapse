@@ -1,6 +1,6 @@
 <html>
-<head> 
-    <title> 
+<head>
+    <title>
         UPLOAD PAGE v1.0
     </title>
     <script type="text/javascript">
@@ -14,7 +14,7 @@
         function loadStartDate() {
             var dateRangeStart = document.getElementById("dateRangeStart").value;
             console.log(dateRangeStart);
-            // document.getElementById("dateRangeEnd").value = 
+            // document.getElementById("dateRangeEnd").value =
             // document.getElementById("dateRangeStart").stepUp(7);
             // console.log(dateRangeStart);
         }
@@ -23,7 +23,7 @@
             // dateRangeEnd = dateRangeStart + 7
             console.log(dateRangeEnd);
         }
-        
+
     </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
 </head>
@@ -31,7 +31,7 @@
     <h3>
         Use Elapse
     </h3>
-    <form action="/edit" method="POST" enctype="multipart/form-data" name="icalUpload">
+    <form action="/view" method="POST" enctype="multipart/form-data" name="icalUpload">
         <h5>
             Upload your calender information as a .ics file
         </h5>

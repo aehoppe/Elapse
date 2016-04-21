@@ -19,13 +19,10 @@ def index():
     return render_template('index.html')
 
 # ICAL UPLOAD PAGE
-@app.route('/upload', methods=['POST', 'GET'])
+@app.route('/upload', methods=['POST','GET'])
 def upload():
-    if request.method == 'POST':
-        global icalFile
-        print request.form['icalFile']
-        icalFile = request.form['icalFile']
-        print icalFile
+    icalFile = request.form['icalFile']
+    print icalFile
     return render_template('upload.html')
 
 # EDIT CALENDAR EVENTS
