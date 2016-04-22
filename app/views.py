@@ -6,7 +6,7 @@
 
 from app import app
 from app import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from flask import request, render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for, send_from_directory
 from werkzeug import secure_filename
 from flask_wtf import Form
 import visualize as vis
@@ -66,3 +66,7 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
+
+@app.route('/json/<filename>')
+def json(filename):
+    return send_from_directory('json', filename)
