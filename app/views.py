@@ -32,11 +32,14 @@ def index():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join('app/uploads/cal.ics'))
-            return redirect(url_for('choose'))
+        try:
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join('app/uploads/cal.ics'))
+                return redirect(url_for('choose'))
+        except Exception, argument:
+            print argument
     return '''
     <!doctype html>
     <title>Upload new File</title>
