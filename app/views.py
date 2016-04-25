@@ -38,7 +38,6 @@ def about():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-<<<<<<< HEAD
         # startDate = request.form['dateRangeStart']
         # endDate = request.form['dateRangeEnd']
         # print type(startDate)
@@ -60,25 +59,6 @@ def upload():
     # </form>
     # '''
 
-=======
-        try:
-            file = request.files['file']
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join('app/uploads/cal.ics'))
-                return redirect(url_for('choose'))
-        except Exception, argument:
-            print argument
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
->>>>>>> heroku
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
