@@ -1,7 +1,8 @@
+<!doctype html>
 <html>
 <head>
     <title>
-        UPLOAD PAGE v1.0
+        Upload.
     </title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
     <script type="text/javascript">
@@ -28,21 +29,39 @@
     </script>
 </head>
 <body>
-    <h3>
-        Use Elapse
-    </h3>
+    <div class="container-left">
+        <div class="item">
+            <h2>
+                Use Elapse.
+            </h2>
+        </div>
+    </div>
     <form action="" method="POST" enctype="multipart/form-data" name="icalUpload">
-        <h5>
-            Upload your calender information as a .ics file
-        </h5>
-        <input type="file" name="icalFile" id="icalFile" onchange="loadFile()" required>
-        <br>
-        <h5>
-            Select a week to visualize
-        </h5>
-        <input type="date" name="dateRangeStart" id="dateRangeStart" value="" onchange="loadStartDate()" required>
-        to
-        <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" onchange="loadEndDate()" required>
-        <input type="submit" value=">">
+        <div class="container-center">
+            <div class="item">
+                <h4>
+                    <span title="You can export your entire calendar as a .ics file!">To start, upload your calendar information as a .ics file</span>
+                </h4>
+                <br>
+                <input type="file" name="icalFile" id="icalFile" required>
+            </div>
+            <div class="item">
+                <h4>
+                    Select a week to visualize
+                </h4>
+                <br>
+                <input type="date" name="dateRangeStart" id="dateRangeStart" value="" required>
+                to
+                <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" required>
+            </div>
+        </div>
+        <div class="container-nav">
+            <div class="item">
+                <a href="/index"> Back</a>
+            </div>
+            <div class="item">
+                <input type="submit" value=">">
+            </div>
+        </div>
     </form>
 </body>
