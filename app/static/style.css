@@ -16,9 +16,20 @@ a {
 }
 a:hover {color: #676766;}
 
+input[type=submit] {
+    border: none;
+    background: none;
+    color: #bd00a2;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input[type=file] {
+}
+
 .container-left {
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: left;
     flex-direction: row;
 }
@@ -40,7 +51,7 @@ a:hover {color: #676766;}
 
 .container-center {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex-direction: row;
 }
@@ -52,9 +63,16 @@ a:hover {color: #676766;}
     flex-direction: row;
 }
 
+.container-vert {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
 .item {
-    max-width: 50%;
+    max-width: 75%;
     padding: 2em;
 }
+
 
