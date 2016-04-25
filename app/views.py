@@ -14,6 +14,7 @@ import os
 
 icalFile = 'test'
 visChoice = 'donut'
+daterange = None
 
 #+++++++++++++++++++++++++++++
 def allowed_file(filename):
@@ -33,19 +34,25 @@ def index():
 def upload():
     if request.method == 'POST':
         file = request.files['file']
+        # startDate = request.form['dateRangeStart']
+        # endDate = request.form['dateRangeEnd']
+        # print type(startDate)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/uploads/cal.ics'))
             return redirect(url_for('choose'))
+    # return render_template('upload.html')
+
     return '''
     <!doctype html>
     <title>Upload new File</title>
     <h1>Upload new File</h1>
     <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
+    <p><input type=file name=file>
+    <input type=submit value=Upload>
     </form>
     '''
+
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
@@ -58,7 +65,7 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice)
+        vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
         return redirect(url_for('visualize'))
     return render_template('choose.html')
 
