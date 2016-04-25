@@ -29,29 +29,35 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+# ABOUT THE PROJECT
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 # UPLOAD ICAL
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        file = request.files['file']
         # startDate = request.form['dateRangeStart']
         # endDate = request.form['dateRangeEnd']
         # print type(startDate)
+        file = request.files['icalFile']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/uploads/cal.ics'))
             return redirect(url_for('choose'))
-    # return render_template('upload.html')
 
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-    <p><input type=file name=file>
-    <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('upload.html')
+
+    # return '''
+    # <!doctype html>
+    # <title>Upload new File</title>
+    # <h1>Upload new File</h1>
+    # <form action="" method=post enctype=multipart/form-data>
+    # <p><input type=file name=file>
+    # <input type=submit value=Upload>
+    # </form>
+    # '''
 
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
@@ -66,6 +72,7 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
+
         return redirect(url_for('visualize'))
     return render_template('choose.html')
 

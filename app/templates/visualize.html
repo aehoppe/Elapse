@@ -9,14 +9,32 @@
     <script src="http://trifacta.github.com/vega/vega.js"></script>
 </head>
 <body>
-    <h1>Here is how your time has elapsed.</h1>
+    <div class="container-left">
+        <div class="item">
+            <h2>
+                Here is how your time has elapsed.
+            </h2>
+        </div>
+    </div>
     <div id="vis"></div>
     <script type="text/javascript">
     // parse a spec and create a visualization view
     function parse(spec) {
         vg.parse.spec(spec, function(chart) { chart({el:"#vis"}).update(); });
     }
-    parse("json/vis.json");
+    parse("json/vis.json");    
     </script>
+    <div class="container-nav">
+        <div class="item">
+            <h3>
+                <a href="/choose"> Choose a different view.</a>
+            </h3>
+        </div>
+        <div class="item">
+            <h3>
+                <a href="/index"> Home. </a>
+            </h3>
+        </div>
+    </div>
 </body>
 </html>

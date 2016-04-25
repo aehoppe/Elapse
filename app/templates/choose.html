@@ -5,11 +5,35 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
 </head>
 <body>
-    <h5>Choose a time visualization</h5>
+    <div class="container-left">
+        <div class="item">
+            <h2>
+                Choose your view.
+            </h2>
+        </div>
+    </div>
     <form action="/choose" method="POST" enctype="multipart/form-data" name="vizzes">
-        <input type="radio" name="visChoice" value="stackedArea" required> Stacked area<br>
-        <input type="radio" name="visChoice" value="donut" required> Donut<br>
-        <input type="submit" value=">">
+        <div class="container-vert">
+            <div class="item">
+                <input type="radio" name="visChoice" value="stackedArea" required>Stacked area<br>
+            </div>
+            <div class="item">
+                <input type="radio" name="visChoice" value="donut" required>Donut<br>
+            </div>
+        </div>
+    </div>
+    <div class="container-nav">
+        <div class="item">
+            <h3>
+                <a href="/upload">Return to uploads.</a>
+            </h3>
+        </div>
+        <div class="item">
+            <h3>
+                <input type="submit" value=">">
+            </h3>
+        </div>
+    </div>
     </form>
 </body>
 </html>
