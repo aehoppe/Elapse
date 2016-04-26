@@ -62,7 +62,7 @@ def visualize(filename, visualization, daterange=None):
     # Make plot
     plot = vizzes[visualization](data)
     # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('app/json/vis.json', html_out=False)
+    plot.to_json('vis.json')
 
 
 def stacked_area(data):
@@ -101,6 +101,6 @@ if __name__ == '__main__':
     try:
         name = sys.argv[1]
     except IndexError:
-        name = 'stacked_area'
+        name = u'stacked_area'
     visualize('Gaby.ics', name)
     os.system('firefox vis.html')
