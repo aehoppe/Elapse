@@ -6,7 +6,7 @@
 
 from app import app
 from app import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from flask import request, render_template, redirect, url_for, send_from_directory,
+from flask import request, render_template, redirect, url_for, send_from_directory
 from werkzeug import secure_filename
 from flask_wtf import Form
 import visualize as vis
