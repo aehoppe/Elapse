@@ -6,7 +6,7 @@
 
 from app import app
 from app import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from flask import request, render_template, redirect, url_for, send_from_directory
+from flask import request, render_template, redirect, url_for, send_from_directory, json
 from werkzeug import secure_filename
 from flask_wtf import Form
 import visualize as vis
@@ -45,7 +45,7 @@ def upload():
         file = request.files['icalFile']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join('app/uploads/cal.ics'))
+            file.save(os.path.join('app/static/uploads/cal.ics'))
             return redirect(url_for('edit'))
 
     return render_template('upload.html')
@@ -73,9 +73,10 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         try:
-            vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
+            vis.visualize(os.path.join('app/static/uploads/cal.ics'), visChoice, daterange=daterange)
         except:
             print 'didnt output vis' + str(datetime.datetime.now())
+        # theFile= jsonify("vis.json")
         return redirect(url_for('visualize'))
     return render_template('choose.html')
 
@@ -83,6 +84,10 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
+
+# @app.route('/vis', methods=['POST', 'GET'])
+# def vis():
+#     return render_template('vis.html')
 
 @app.route('/json/<filename>')
 def json(filename):
