@@ -45,7 +45,7 @@ def upload():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/uploads/cal.ics'))
-            return redirect(url_for('choose'))
+            return redirect(url_for('edit'))
 
     return render_template('upload.html')
 
@@ -63,7 +63,7 @@ def upload():
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-    return render_template('edit.html', events=icalFile.events)
+    return render_template('edit.html')
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -71,6 +71,8 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
+        visChoice = str(visChoice)
+        print type(visChoice)
         vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
 
         return redirect(url_for('visualize'))

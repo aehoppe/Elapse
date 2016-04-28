@@ -57,7 +57,7 @@ def visualize(filename, visualization, daterange=None):
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
     # Dictionary of plotting functions
-    vizzes = {u'stacked_area':stacked_area, 'donut':donut}
+    vizzes = {'stackedArea':stackedArea, 'donut':donut}
 
     # Make plot
     plot = vizzes[visualization](data)
@@ -65,7 +65,7 @@ def visualize(filename, visualization, daterange=None):
     plot.to_json('vis.json', html_out=False)
 
 
-def stacked_area(data):
+def stackedArea(data):
     """ Creates a stacked area plot visualization """
 
     stacked = vincent.StackedArea(data, iter_idx='index')
@@ -101,6 +101,6 @@ if __name__ == '__main__':
     try:
         name = sys.argv[1]
     except IndexError:
-        name = 'stacked_area'
+        name = 'stackedArea'
     visualize('Gaby.ics', name)
     os.system('firefox vis.html')
