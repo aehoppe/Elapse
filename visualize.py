@@ -62,7 +62,7 @@ def visualize(filename, visualization, daterange=None):
     # Make plot
     plot = vizzes[visualization](data)
     # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('vis.json', html_out=False)
+    plot.to_json('json/vis.json', html_out=False)
 
 
 def stackedArea(data):

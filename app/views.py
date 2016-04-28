@@ -10,6 +10,7 @@ from flask import request, render_template, redirect, url_for, send_from_directo
 from werkzeug import secure_filename
 from flask_wtf import Form
 import visualize as vis
+import datetime
 import os
 
 icalFile = 'test'
@@ -71,10 +72,10 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        visChoice = str(visChoice)
-        print type(visChoice)
-        vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
-
+        try:
+            vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
+        except:
+            print 'didnt output vis' + str(datetime.datetime.now())
         return redirect(url_for('visualize'))
     return render_template('choose.html')
 
@@ -85,4 +86,5 @@ def visualize():
 
 @app.route('/json/<filename>')
 def json(filename):
-    return send_from_directory('json', filename)
+    print filename
+    return send_from_directory(filename)
