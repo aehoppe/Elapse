@@ -24,6 +24,10 @@ class Event(object):
             self.startTime = vevent.decoded('dtstart')
             self.endTime = vevent.decoded('dtend')
             self.duration = self.endTime - self.startTime
+            if type(self.startTime) == datetime.date:
+                self.date = self.startTime
+            else:
+                self.date = self.startTime.date()
             # self.location
 
     def __repr__(self):

@@ -1,3 +1,4 @@
+
 """ Elapse
     SoftDes Final Project
 
@@ -12,6 +13,7 @@ from flask_wtf import Form
 import visualize as vis
 import datetime
 import os
+from elapseCalendar import Calendar
 
 icalFile = 'test'
 visChoice = 'donut'
@@ -46,7 +48,7 @@ def upload():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/uploads/cal.ics'))
-            return redirect(url_for('choose'))
+            return redirect(url_for('edit'))
 
     return render_template('upload.html')
 
@@ -64,7 +66,23 @@ def upload():
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-    return render_template('edit.html', events=icalFile.events)
+    icalFile = Calendar('cal')
+    icalFile.parse_ical('app/uploads/cal.ics')
+    eventStrings = []
+    for e in icalFile.events:
+        print e.name
+        # eventStrings.append(e.name.encode('ascii', errors='backslashreplace'))
+    # print
+    return render_template('edit.html', events=eventStrings)
+
+def ascii(strn):
+    output = ''
+    for char in strn:
+        if ord(char) < 128:
+            output += str(ord(char))
+        else:
+            output += char
+    return output
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -73,7 +91,8 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         try:
-            vis.visualize(os.path.join('app/uploads/cal.ics'), visChoice, daterange=daterange)
+            global icalFile
+            vis.visualize(icalFile, visChoice, daterange=daterange)
         except:
             print 'didnt output vis' + str(datetime.datetime.now())
         return redirect(url_for('visualize'))
