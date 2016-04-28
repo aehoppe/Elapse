@@ -79,7 +79,6 @@ def upload():
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-<<<<<<< HEAD
     icalFile = Calendar('cal')
     icalFile.parse_ical('app/uploads/cal.ics')
     eventStrings = []
@@ -97,9 +96,7 @@ def ascii(strn):
         else:
             output += char
     return output
-=======
-    return render_template('edit.html')
->>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
+
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -108,12 +105,8 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         try:
-<<<<<<< HEAD
             global icalFile
             vis.visualize(icalFile, visChoice, daterange=daterange)
-=======
-            vis.visualize(os.path.join('app/static/uploads/cal.ics'), visChoice, daterange=daterange)
->>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
         except:
             print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
