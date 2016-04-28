@@ -2,6 +2,18 @@
 """ Elapse
     SoftDes Final Project
 
+    This file handles all of the routing for our Flask web app. Each @app.route
+    tag corresponds to a page of our website. The user interaction flow is:
+        index
+        |
+        upload: Upload .ics files and choose date range
+        |
+        edit: Edit data and add tags
+        |
+        choose: Choose visualization
+        |
+        visualize: See how you use your time
+
     author: Gaby Clarke, Alex Hoppe
 """
 
@@ -15,6 +27,7 @@ import datetime
 import os
 from elapseCalendar import Calendar
 
+# GLOBAL VARIABLES
 icalFile = 'test'
 visChoice = 'donut'
 daterange = None
