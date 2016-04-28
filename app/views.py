@@ -47,11 +47,7 @@ def upload():
         file = request.files['icalFile']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-<<<<<<< HEAD
-            file.save(os.path.join('app/uploads/cal.ics'))
-=======
             file.save(os.path.join('app/static/uploads/cal.ics'))
->>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
             return redirect(url_for('edit'))
 
     return render_template('upload.html')
