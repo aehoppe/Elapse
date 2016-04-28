@@ -10,14 +10,17 @@ import datetime
 import os
 
 
-def visualize(cal, visualization, daterange=None):
+def visualize(filename, visualization, daterange=None):
     """ Takes a file name (could be a file object in the future) and
-    parses its cal data into a Calendar with Events, and a visualization type
+    parses its ical data into a Calendar with Events, and a visualization type
     argument. It also takes an optional date range tuple of datetime objects. It
     plots the cumulative time for each event in the range specified. """
 
+    c = elapseCalendar.Calendar('stacked_vis_cal')
+    c.parse_ical('cals/'+filename)
+
     # Set default timezone
-    tzDefault = cal.events[0].startTime.tzinfo
+    tzDefault = c.events[0].startTime.tzinfo
 
     # Take user input for dates
     if daterange == None:
@@ -40,11 +43,9 @@ def visualize(cal, visualization, daterange=None):
     # Initialize data dictionary with index values
     data = {'index': dayStrings}
 
-    print data
-
     # Clean data (no date objects allowed) and accumulate total time
     for i in range(visLen):
-        for event in cal.events:
+        for event in c.events:
             if type(event.startTime) == datetime.date or not event.startTime.tzinfo:
                 pass
             else:
@@ -56,15 +57,15 @@ def visualize(cal, visualization, daterange=None):
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
     # Dictionary of plotting functions
-    vizzes = {u'stacked_area':stacked_area, 'donut':donut}
+    vizzes = {'stackedArea':stackedArea, 'donut':donut}
 
     # Make plot
     plot = vizzes[visualization](data)
-
     # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('app/static/uploads/vis.json')
+    plot.to_json('json/vis.json', html_out=False)
 
-def stacked_area(data):
+
+def stackedArea(data):
     """ Creates a stacked area plot visualization """
 
     stacked = vincent.StackedArea(data, iter_idx='index')
@@ -100,6 +101,6 @@ if __name__ == '__main__':
     try:
         name = sys.argv[1]
     except IndexError:
-        name = 'stacked_area'
+        name = 'stackedArea'
     visualize('Gaby.ics', name)
     os.system('firefox vis.html')

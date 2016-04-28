@@ -7,7 +7,7 @@
 
 from app import app
 from app import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from flask import request, render_template, redirect, url_for, send_from_directory
+from flask import request, render_template, redirect, url_for, send_from_directory, json
 from werkzeug import secure_filename
 from flask_wtf import Form
 import visualize as vis
@@ -47,7 +47,11 @@ def upload():
         file = request.files['icalFile']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+<<<<<<< HEAD
             file.save(os.path.join('app/uploads/cal.ics'))
+=======
+            file.save(os.path.join('app/static/uploads/cal.ics'))
+>>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
             return redirect(url_for('edit'))
 
     return render_template('upload.html')
@@ -66,6 +70,7 @@ def upload():
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
+<<<<<<< HEAD
     icalFile = Calendar('cal')
     icalFile.parse_ical('app/uploads/cal.ics')
     eventStrings = []
@@ -83,6 +88,9 @@ def ascii(strn):
         else:
             output += char
     return output
+=======
+    return render_template('edit.html')
+>>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -91,10 +99,15 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         try:
+<<<<<<< HEAD
             global icalFile
             vis.visualize(icalFile, visChoice, daterange=daterange)
+=======
+            vis.visualize(os.path.join('app/static/uploads/cal.ics'), visChoice, daterange=daterange)
+>>>>>>> 64dc1afc68a08bce2f409e580baa7503295829a2
         except:
             print 'didnt output vis' + str(datetime.datetime.now())
+        # theFile= jsonify("vis.json")
         return redirect(url_for('visualize'))
     return render_template('choose.html')
 
@@ -102,6 +115,10 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
+
+# @app.route('/vis', methods=['POST', 'GET'])
+# def vis():
+#     return render_template('vis.html')
 
 @app.route('/json/<filename>')
 def json(filename):
