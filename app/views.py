@@ -25,7 +25,7 @@ from flask_wtf import Form
 import visualize as vis
 import datetime
 import os
-from elapseCalendar import elapseCalendar
+from elapseCalendar import Calendar
 
 # GLOBAL VARIABLES
 icalFile = 'test'
@@ -79,7 +79,7 @@ def upload():
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-    icalFile = elapseCalendar('cal')
+    icalFile = Calendar('cal')
     icalFile.parse_ical('app/uploads/cal.ics')
     eventStrings = []
     for e in icalFile.events:

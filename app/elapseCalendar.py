@@ -10,8 +10,8 @@ import os
 import datetime
 
 
-class elapseCalendar(object):
-    """ An object with calendar information and a list of elapseEvent objects. """
+class Calendar(object):
+    """ An object with calendar information and a list of Event objects. """
 
     def __init__(self, name, events=None):
         if events == None:
@@ -27,8 +27,8 @@ class elapseCalendar(object):
         return output
 
     def parse_ical(self, filename, daterange=None):
-        """ Parses an ical (.ics) file, and populates elapseCalendar.events with
-            elapseEvent objects.
+        """ Parses an ical (.ics) file, and populates Calendar.events with
+            Event objects.
 
             filename: ical file to be parsed
         """
@@ -49,5 +49,5 @@ class elapseCalendar(object):
 
 
 if __name__ == '__main__':
-    c = elapseCalendar('Gaby.ics')
+    c = Calendar('Gaby.ics')
     print c.__repr__()
