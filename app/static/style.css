@@ -2,6 +2,95 @@ body {
     font-family: helvetica, sans-serif
 }
 
-h {
+h1, h2, h3, h4, h5, h6 {
     font-family: helvetica, sans-serif
 }
+
+h1 {font-size: 5em;}
+
+h2 {font-size: 3em;}
+
+a {
+    color: #bd00a2;
+    text-decoration: none;
+}
+a:hover {color: #676766;}
+
+input[type=submit] {
+    border: none;
+    background: none;
+    color: #bd00a2;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input[type=file] {
+}
+
+.container-left {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.container-index {
+    background: #dfdfdf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30em;
+}
+
+.container-index-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container-nav {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.container-vert {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.item {
+    max-width: 75%;
+    padding: 2em;
+}
+
+.container-about {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.item-about {
+    flex-shrink: 1;
+    flex-grow: 2;
+}
+
+.item-buffer {
+    width: 20%;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+
