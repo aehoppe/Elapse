@@ -3,12 +3,32 @@
 ##### Elapse is an interactive time visualization webapp that allows busy people to rationalize their busy lives.
 
 ## Using Elapse
-Eventually, this section will include the following:
-- How to run our app.  Ideally, Elapse users will never need to interact with anything but our web interface!
+Check out our app at http://quiet-garden-39600.herokuapp.com
 
 ## Running Elapse locally
-Eventually, this section will include the following:
-- Download instructions
+To run Elapse locally (if you really want to), first clone our git repository.
+
+    $ git clone https://github.com/aehoppe/Elapse
+    $ cd Elapse
+
+You'll need to set up a virtual environment. The following will create one named `flask`
+
+    $ sudo pip2 install virtualenv
+    $ python2.7 -m virtualenv flask
+
+Then spin up the virtual environment
+
+    $ source flask/bin/activate
+
+and install dependencies
+
+    $ flask/bin/pip install -r requirements.txt
+
+Then you're ready to go, start up a local web server
+
+    $ ./run.py
+
+and go to `localhost:5000` in your browser of choice.
 
 ### Dependencies
 Elapse makes heavy use of the following:
@@ -17,7 +37,7 @@ Elapse makes heavy use of the following:
     - [werkzeug](http://werkzeug.pocoo.org)
     - [Jinja2](http://jinja.pocoo.org/docs/dev/)
 - [heroku](https://www.heroku.com)
-- [icalendar](https://github.com/collective/icalendar) 
+- [icalendar](https://github.com/collective/icalendar)
 - [vincent](https://github.com/wrobstory/vincent)
 
 Elapse's other dependencies are listed in [requirements.txt](https://github.com/aehoppe/Elapse/blob/master/requirements.txt). To install all dependencies, run the following on the command line:
@@ -25,7 +45,16 @@ Elapse's other dependencies are listed in [requirements.txt](https://github.com/
     $pip install -r requirements.txt
 
 ## Examples
-Coming soon...
+Below are a few examples of the visualizations that Elapse creates.
+
+Stacked Area:
+![Stacked Area](documentation/gaby_stacked-area_nolegend.png)
+
+Donut:
+![Donut](documentation/gaby_donut_nolegend.png)
+
+
+
 
 ## Implementation
 Elapse was developed using Python.  We used the [icalendar](https://github.com/collective/icalendar) package to parse iCal data, and [vincent](https://github.com/wrobstory/vincent) to implement our data visualizations.  More about our implementation to come...

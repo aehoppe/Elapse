@@ -1,5 +1,18 @@
+
 """ Elapse
     SoftDes Final Project
+
+    This file handles all of the routing for our Flask web app. Each @app.route
+    tag corresponds to a page of our website. The user interaction flow is:
+        index
+        |
+        upload: Upload .ics files and choose date range
+        |
+        edit: Edit data and add tags
+        |
+        choose: Choose visualization
+        |
+        visualize: See how you use your time
 
     author: Gaby Clarke, Alex Hoppe
 """
@@ -12,7 +25,9 @@ from flask_wtf import Form
 import visualize as vis
 import datetime
 import os
+from elapseCalendar import Calendar
 
+# GLOBAL VARIABLES
 icalFile = 'test'
 visChoice = 'donut'
 daterange = None
@@ -60,11 +75,29 @@ def upload():
     # </form>
     # '''
 
+def asciify(strn):
+    output = ''
+    for char in strn:
+        if ord(char) < 128:
+            output += str(ord(char))
+        else:
+            output += char
+    return output
+
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
     global icalFile
-    return render_template('edit.html')
+    icalFile = Calendar('cal')
+    icalFile.parse_ical('app/static/uploads/cal.ics')
+    eventStrings = []
+    for e in icalFile.events:
+        print asciify(e.name)
+        eventStrings.append(asciify(e.name))
+    # print
+    return render_template('edit.html', events=eventStrings)
+
+
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -73,7 +106,8 @@ def choose():
         global visChoice
         visChoice = request.form['visChoice']
         try:
-            vis.visualize(os.path.join('app/static/uploads/cal.ics'), visChoice, daterange=daterange)
+            global icalFile
+            vis.visualize(icalFile, visChoice, daterange=daterange)
         except:
             print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
