@@ -75,20 +75,7 @@ def upload():
     # </form>
     # '''
 
-# EDIT CALENDAR EVENTS
-@app.route('/edit', methods=['POST', 'GET'])
-def edit():
-    global icalFile
-    icalFile = Calendar('cal')
-    icalFile.parse_ical('app/uploads/cal.ics')
-    eventStrings = []
-    for e in icalFile.events:
-        print e.name
-        # eventStrings.append(e.name.encode('ascii', errors='backslashreplace'))
-    # print
-    return render_template('edit.html', events=eventStrings)
-
-def ascii(strn):
+def asciify(strn):
     output = ''
     for char in strn:
         if ord(char) < 128:
@@ -96,6 +83,20 @@ def ascii(strn):
         else:
             output += char
     return output
+
+# EDIT CALENDAR EVENTS
+@app.route('/edit', methods=['POST', 'GET'])
+def edit():
+    global icalFile
+    icalFile = Calendar('cal')
+    icalFile.parse_ical('app/static/uploads/cal.ics')
+    eventStrings = []
+    for e in icalFile.events:
+        print asciify(e.name)
+        eventStrings.append(asciify(e.name))
+    # print
+    return render_template('edit.html', events=eventStrings)
+
 
 
 # CHOOSE A VISUALIZATION
