@@ -45,7 +45,16 @@ Elapse's other dependencies are listed in [requirements.txt](https://github.com/
     $pip install -r requirements.txt
 
 ## Examples
-Coming soon...
+Below are a few examples of the visualizations that Elapse creates.
+
+Stacked Area:
+![Stacked Area](documentation/gaby_stacked-area_nolegend.png)
+
+Donut:
+![Donut](documentation/gaby_donut_nolegend.png)
+
+
+
 
 ## Implementation
 Elapse was developed using Python.  We used the [icalendar](https://github.com/collective/icalendar) package to parse iCal data, and [vincent](https://github.com/wrobstory/vincent) to implement our data visualizations.  More about our implementation to come...
