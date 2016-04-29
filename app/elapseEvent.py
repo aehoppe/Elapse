@@ -7,7 +7,7 @@
 import datetime
 
 
-class Event(object):
+class elapseEvent(object):
     """ An object with decoded event information from an ical event. """
 
     def __init__(self, vevent, name=None, importance=None):
@@ -31,10 +31,10 @@ class Event(object):
             # self.location
 
     def __repr__(self):
-        return 'Event {}: start time:{}, end time:{}, duration:{}'.format(self.name, self.startTime, self.endTime, self.duration)
+        return 'elapseEvent {}: start time:{}, end time:{}, duration:{}'.format(self.name, self.startTime, self.endTime, self.duration)
 
     def __cmp__(self, other):
-        """ Compares two Event objects based on start time."""
+        """ Compares two elapseEvent objects based on start time."""
         if self.startTime > other.startTime:
             return 1
         elif self.startTime < other.startTime:
