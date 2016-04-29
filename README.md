@@ -13,9 +13,9 @@ Eventually, this section will include the following:
 ### Dependencies
 Elapse makes heavy use of the following:
 - [Flask](http://flask.pocoo.org)
-- [flask_wtf](https://flask-wtf.readthedocs.org/en/latest/)
-- [werkzeug](http://werkzeug.pocoo.org)
-- [Jinja2](http://jinja.pocoo.org/docs/dev/)
+    - [flask_wtf](https://flask-wtf.readthedocs.org/en/latest/)
+    - [werkzeug](http://werkzeug.pocoo.org)
+    - [Jinja2](http://jinja.pocoo.org/docs/dev/)
 - [heroku](https://www.heroku.com)
 - [icalendar](https://github.com/collective/icalendar) 
 - [vincent](https://github.com/wrobstory/vincent)

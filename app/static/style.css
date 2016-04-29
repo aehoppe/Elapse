@@ -75,4 +75,22 @@ input[type=file] {
     padding: 2em;
 }
 
+.container-about {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.item-about {
+    flex-shrink: 1;
+    flex-grow: 2;
+}
+
+.item-buffer {
+    width: 20%;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
 
