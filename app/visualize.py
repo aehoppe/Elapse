@@ -35,7 +35,7 @@ def visualize(cal, visualization, daterange=None):
     daysIncluded = [visRange[0] + i*datetime.timedelta(1) for i in range(visLen + 1)]
 
     # Make labels
-    dayStrings = [str(i) for i in range(visLen)]
+    dayStrings = [str(i) for i in daysIncluded]
 
     # Initialize data dictionary with index values
     data = {'index': dayStrings}
