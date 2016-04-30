@@ -15,9 +15,13 @@
     <div class="container-vert">
         <div class="item">
             <ul id="events">
+                {% if events != [] %}
                 {% for event in events %}
                 <li>{{ event }}</li>
                 {% endfor %}
+                {% else %}
+                <p> No events found </p>
+                {% endif %}
             </ul>
         </div>
     </div>
