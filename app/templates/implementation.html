@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> 
+        Implementation.
+    </title>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Elapse</a>
+            </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/upload">Use Elapse.</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About the project. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about">Overview.</a></li>
+                        <li><a href="/implementation">Implementation.</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="header">
+                    <h2>
+                        The Making of Elapse.
+                    </h2>
+                </div>
+                <p>
+                    This project was developed with Python, HTML, CSS, and a little bit of JavaScript.  Our source code can be accessed in our <a href="https://github.com/aehoppe/Elapse">Github repository</a>.  The repository’s README contains all necessary information for running Elapse locally, including all dependency information.
+                </p>
+                <p>
+                    First, an overview of the user-software interactions that occur when using Elapse:
+                </p>
+                <p>
+                    [diagram]
+                </p>
+                <p>
+                    The user starts the interaction by going to [our url] and selecting Use Elapse. from the homepage.  The user is then prompted to upload their calendar data as a .ics file and select a week to visualize.  The ical is received and parsed for events within the selected date range, and these events are stored within our own data structure.  These events are then handed back to the user on a webpage, where the user can edit some of their attributes as desired.  Any necessary modifications to the events stored are then made.  The user is prompted to select a visualization mode, and their calendar information is then visualized on a webpage.
+                </p>
+                <p>
+                    Our backend development was done in Python, and makes use of the <a href="http://flask.pocoo.org">Flask</a> framework for webification.  The users’ upload form was created with <a href="https://flask-wtf.readthedocs.io/en/latest/">flask_wtf</a>.  We parse users’ ical (.ics) files using the <a href="https://github.com/collective/icalendar">icalendar</a> library, and store the data as elapseEvent objects within an elapseCalendar object.  We used the <a href="https://github.com/wrobstory/vincent">vincent</a> library to visualize our data.  Vincent is a wrapper for <a href="https://vega.github.io/vega/">vega</a>, which is a wrapper for <a href="https://d3js.org">d3.js</a>.  We had initially hoped to simply do the visualization, and all data processing in JavaScript, but decided to find a Python alternative so that we could focus on improving our Python skills as opposed to working in an entirely unfamiliar language.  With vincent, we generate JSON object for the visualization, which is then rendered in an HTML template.
+                </p>
+                <p>
+                    [backend diagram]
+                </p>
+                <p>
+                    On the frontend, we used JavaScript and jQuery to render the visualization JSON object with the HTML template, as well as to generate the user’s event-editing interface.  Within CSS, we made use of flexboxes... The webapp is hosted on <a href="https://dashboard.heroku.com/apps">Heroku</a>.
+                </p>
+                <p>
+                    Throughout the project, we both reviewed our code with peers and sought feedback from peers regarding design decisions we made...[reflections on code review and technical reviews]...Documentation from these reviews can be found in the <a href="https://github.com/aehoppe/Elapse/tree/master/documentation">documentation directory of our Github repository</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    
+</body>
+
+</html>
