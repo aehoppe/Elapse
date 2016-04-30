@@ -122,3 +122,8 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
+
+
+@app.route('/test')
+def test():
+    return render_template('test.html')

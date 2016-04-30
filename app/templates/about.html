@@ -3,10 +3,77 @@
 
 <head>
     <title>About the project.</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 
 <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Elapse</a>
+            </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/upload">Use Elapse.</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About the project. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about">Overview.</a></li>
+                        <li><a href="#">Implementation.</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                <div class="header">
+                    <h1>About the project.</h1>
+                </div>
+                <p>
+                    Elapse was developed in the Spring of 2016 for Software Design, a course at <a href="www.olin.edu">Olin College of Engineering</a>.  Software Design is an introduction to computation and software, taught in Python.
+                </p>
+                <p>
+                    When selecting a final project topic, we wanted to do something involving visual design or data visualization, and we were both interested in learning how to develop for the web.  We decided that a webapp which allowed users to visualized how their time is distributed suited our interests well, and also is relevant to the life of the overbooked Oliner.
+                </p>
+                <p>
+                    This project was developed by <a href="https://github.com/gabyclarke">Gaby Clarke</a> and <a href="https://github.com/aehoppe">Alex Hoppe</a>.  
+                </p>
+                <p>
+                    At the time of development, Gaby was a sophomore at Olin College of Engineering studying Design.  For the final project, Gaby’s learning goals included learning about visual design for web interfaces, data visualization, agile development, and working with branches in git.
+                </p>
+                <p>
+                    Alex will probably have some stuff here...
+                </p>
+                <p>
+                    Documentation for our mid-project assignments, such as our technical and code reviews, can be found in the <a href="https://github.com/aehoppe/Elapse/tree/master/documentation">documentation directory of our Github repository</a>.  View our final project poster, which provides a brief overview of the project and its architecture, either in the documentation directory or <a href="">here</a>.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            </div>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            </div>
+        </div>
+    </div>
+
+
     <div class="container-left">
         <div class="item">
             <h2>
@@ -29,24 +96,7 @@
             <h5>
                 About the project.
             </h5>
-            <p>
-                Elapse was developed in the Spring of 2016 for Software Design, a course at <a href="www.olin.edu">Olin College of Engineering</a>.  Software Design is an introduction to computation and software, taught in Python.
-            </p>
-            <p>
-                When selecting a final project topic, we wanted to do something involving visual design or data visualization, and we were both interested in learning how to develop for the web.  We decided that a webapp which allowed users to visualized how their time is distributed suited our interests well, and also is relevant to the life of the overbooked Oliner.
-            </p>
-            <p>
-                This project was developed by <a href="https://github.com/gabyclarke">Gaby Clarke</a> and <a href="https://github.com/aehoppe">Alex Hoppe</a>.  
-            </p>
-            <p>
-                At the time of development, Gaby was a sophomore at Olin College of Engineering studying Design.  For the final project, Gaby’s learning goals included learning about visual design for web interfaces, data visualization, agile development, and working with branches in git.
-            </p>
-            <p>
-                Alex will probably have some stuff here...
-            </p>
-            <p>
-                Documentation for our mid-project assignments, such as our technical and code reviews, can be found in the <a href="https://github.com/aehoppe/Elapse/tree/master/documentation">documentation directory of our Github repository</a>.  View our final project poster, which provides a brief overview of the project and its architecture, either in the documentation directory or <a href="">here</a>.
-            </p>
+            
             <h5>
                 How we made the thing. [Implementation]
             </h5>
@@ -77,6 +127,27 @@
         </div>
         <div class="item-buffer"></div>
     </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://github.com/anishan/poe-2015">
+                                <i class="fa fa-github fa-2x"></i>
+                                <!-- <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span> -->
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Lazer Maze 2015<br>
+                    Design by <a href="http://startbootstrap.com/template-overviews/clean-blog/">Start Bootstrap</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
