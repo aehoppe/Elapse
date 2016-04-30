@@ -55,7 +55,7 @@ def visualize(cal, visualization, dateRange=None):
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
     # Dictionary of plotting functions
-    vizzes = {u'stacked_area':stacked_area, 'donut':donut}
+    vizzes = {u'stackedArea':stacked_area, u'donut':donut}
 
     # Make plot
     plot = vizzes[visualization](data)

@@ -29,7 +29,7 @@ import os
 from elapseCalendar import Calendar
 
 # GLOBAL VARIABLES
-icalFile = 'test'
+ical = None
 visChoice = 'donut'
 dateRange = None
 
@@ -72,11 +72,11 @@ def allowed_file(filename):
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
-    global icalFile
-    icalFile = Calendar('cal')
-    icalFile.parse_ical('app/static/uploads/cal.ics')
+    global ical
+    ical = Calendar('cal')
+    ical.parse_ical('app/static/uploads/cal.ics')
     eventStrings = []
-    for e in icalFile.events:
+    for e in ical.events:
         print asciify(e.name)
         eventStrings.append(asciify(e.name))
     return render_template('edit.html', events=eventStrings)
@@ -97,11 +97,12 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        try:
-            global icalFile
-            vis.visualize(icalFile, visChoice, dateRange=dateRange)
-        except:
-            print 'didnt output vis ' + str(datetime.datetime.now())
+        # try:
+        global ical
+        print ical
+        vis.visualize(ical, visChoice, daterange=daterange)
+        # except:
+        #     print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
         return redirect(url_for('visualize'))
     return render_template('choose.html')
