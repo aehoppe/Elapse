@@ -26,7 +26,7 @@ class Calendar(object):
         output += 'calendar {} end'.format(self.name)
         return output
 
-    def parse_ical(self, filename, daterange=None):
+    def parse_ical(self, filename, dateRange=None):
         """ Parses an ical (.ics) file, and populates Calendar.events with
             Event objects.
 
@@ -37,10 +37,10 @@ class Calendar(object):
         vevent_list = ical.walk(name='VEVENT')
 
         # Take user input for dates
-        if daterange == None: # Use default dateRange
+        if dateRange == None: # Use default dateRange
             visRange = (datetime.date(2016, 5, 1), datetime.date(2016, 5, 7))
         else:
-            visRange = daterange
+            visRange = dateRange
 
         for vevent in vevent_list:
             e = event.Event(vevent)
