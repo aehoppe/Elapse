@@ -5,12 +5,11 @@
 """
 
 import vincent
-import elapseCalendar
 import datetime
 import os
 
 
-def visualize(cal, visualization, daterange=None):
+def visualize(cal, visualization, dateRange=None):
     """ Takes a file name (could be a file object in the future) and
     parses its cal data into a Calendar with Events, and a visualization type
     argument. It also takes an optional date range tuple of datetime objects. It
@@ -20,10 +19,10 @@ def visualize(cal, visualization, daterange=None):
     tzDefault = cal.events[0].startTime.tzinfo
 
     # Take user input for dates
-    if daterange == None:
-        visRange = (datetime.datetime(2016, 3, 28, tzinfo=tzDefault), datetime.datetime(2016, 4, 3, tzinfo=tzDefault))
+    if dateRange == None:
+        visRange = (datetime.datetime(2016, 5, 1, tzinfo=tzDefault), datetime.datetime(2016, 5, 7, tzinfo=tzDefault))
     else:
-        visRange = daterange
+        visRange = dateRange
 
     # Find the length of the vis in days
     visDelta = (visRange[1] - visRange[0])
@@ -35,7 +34,7 @@ def visualize(cal, visualization, daterange=None):
     daysIncluded = [visRange[0] + i*datetime.timedelta(1) for i in range(visLen + 1)]
 
     # Make labels
-    dayStrings = [str(i) for i in daysIncluded]
+    dayStrings = [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
 
     # Initialize data dictionary with index values
     data = {'index': dayStrings}
@@ -61,8 +60,9 @@ def visualize(cal, visualization, daterange=None):
     # Make plot
     plot = vizzes[visualization](data)
 
-    # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
+    # Generate JSON object to render in HTML template
     plot.to_json('app/static/uploads/vis.json')
+
 
 def stacked_area(data):
     """ Creates a stacked area plot visualization """
@@ -73,21 +73,23 @@ def stacked_area(data):
     stacked.colors(brew='Spectral')
     return stacked
 
+
 def donut(data):
     """ Creates a donut plot visualization """
 
-    #total the time in each category and give it back as a Pandas dataframe
+    # Total the time in each category and give it back as a Pandas dataframe
     data = total_time(data)
     donut = vincent.Pie(data, inner_radius=200)
     donut.colors(brew="Set3")
     donut.legend('Categories')
     return donut
 
+
 def total_time(data):
     """ Totals up the time in each category in the dataframe """
 
     new_data = {}
-    #total up the non-index categories
+    # Total up the non-index categories
     for key in data.keys():
         if not key is 'index':
             new_data[key] = sum(data[key])

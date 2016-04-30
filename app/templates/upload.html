@@ -13,17 +13,9 @@
             var icalFile = document.getElementById("icalFile").value;
             console.log(icalFile);
         }
-        function loadStartDate() {
-            var dateRangeStart = document.getElementById("dateRangeStart").value;
-            console.log(dateRangeStart);
-            // document.getElementById("dateRangeEnd").value =
-            // document.getElementById("dateRangeStart").stepUp(7);
-            // console.log(dateRangeStart);
-        }
-        function loadEndDate() {
-            var dateRangeEnd = document.getElementById("dateRangeEnd").value;
-            // dateRangeEnd = dateRangeStart + 7
-            console.log(dateRangeEnd);
+        function loadDateRange() {
+            var dateRange = document.getElementById("dateRange").value;
+            console.log(dateRange);
         }
 
     </script>
@@ -60,13 +52,10 @@
                 </div>
                 <div class="item">
                     <h4>
-                        Select a week to visualize
+                        Select a week to visualize.
                     </h4>
                     <br>
-                    <input type="date" name="dateRangeStart" id="dateRangeStart" value="" required>
-                    to
-                    <input type="date" name="dateRangeEnd" id="dateRangeEnd" value="" required>
-                    <input type="week" name="dateRange" id="dateRange" value="" required>
+                    <input type="week" name="dateRange" id="dateRange" placeholder="Your week starts here." value="" onchange=loadDateRange() required>
                 </div>
             </div>
         </div>

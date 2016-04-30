@@ -37,8 +37,8 @@ class Calendar(object):
         vevent_list = ical.walk(name='VEVENT')
 
         # Take user input for dates
-        if daterange == None:
-            visRange = (datetime.date(2016, 3, 28), datetime.date(2016, 4, 3))
+        if daterange == None: # Use default dateRange
+            visRange = (datetime.date(2016, 5, 1), datetime.date(2016, 5, 7))
         else:
             visRange = daterange
 
