@@ -80,7 +80,7 @@ def visualize(cal, visualization, dateRange=None):
     plot.axis_titles(x='Day of the Week',y='Hours')
 
     # Generate JSON object to render in HTML template
-    return plot.to_json()
+    plot.to_json('app/static/uploads/vis.json')
 
 def stacked_area(data):
     """ Creates a stacked area plot visualization """

@@ -77,6 +77,17 @@ def edit():
     global ical
     ical = Calendar('cal')
     ical.parse_ical('app/static/uploads/cal.ics')
+    global dateRange
+    #timezone-awareness check
+    tzDefault = ical.events[0].startTime.tzinfo
+    dateRange = (dateRange[0].replace(tzinfo=tzDefault), dateRange[1].replace(tzinfo=tzDefault))
+
+    newevents = []
+    for event in ical.events:
+        if event.startTime >= dateRange[0] and event.endTime <= dateRange[1]:
+            newevents.append(event)
+    ical.events = newevents
+
     eventStrings = []
     for e in ical.events:
         # print asciify(e.name)
@@ -102,8 +113,7 @@ def choose():
         # try:
         global ical
         global dateRange
-        with open('vis.json', 'w') as f:
-            f.write(vis.visualize(ical, visChoice, dateRange=dateRange))
+        vis.visualize(ical, visChoice, dateRange=dateRange)
         # except:
         #     print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
