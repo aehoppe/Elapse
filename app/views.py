@@ -100,7 +100,7 @@ def choose():
         # try:
         global ical
         print ical
-        vis.visualize(ical, visChoice, daterange=daterange)
+        vis.visualize(ical, visChoice, dateRange=dateRange)
         # except:
         #     print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
@@ -112,3 +112,8 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
+
+
+@app.route('/test')
+def test():
+    return render_template('test.html')

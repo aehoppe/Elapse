@@ -1,20 +1,29 @@
 body {
-    font-family: helvetica, sans-serif
+    font-family: helvetica, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: helvetica, sans-serif
+    font-family: helvetica, sans-serif;
+    font-weight: bold;
 }
-
 h1 {font-size: 5em;}
-
 h2 {font-size: 3em;}
 
 a {
-    color: #bd00a2;
+    color: #ff0074;
     text-decoration: none;
 }
 a:hover {color: #676766;}
+
+
+
+/* NAVBAR STUFF */
+
+.nav.navbar-nav.navbar-right li a {
+    color: #c30058;
+}
+
+/* FORMS */
 
 input[type=submit] {
     border: none;
@@ -26,6 +35,8 @@ input[type=submit] {
 
 input[type=file] {
 }
+
+
 
 .container-left {
     display: flex;
@@ -39,7 +50,7 @@ input[type=file] {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30em;
+    height: 100vh;
 }
 
 .container-index-nav {
@@ -91,4 +102,11 @@ input[type=file] {
     width: 20%;
     flex-shrink: 1;
     flex-grow: 1;
+}
+
+
+.header {
+  padding-top: 6em;
+  padding-bottom: 2em;
+  text-align: left;
 }

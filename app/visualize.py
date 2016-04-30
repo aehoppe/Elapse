@@ -34,7 +34,7 @@ def visualize(cal, visualization, dateRange=None):
     daysIncluded = [visRange[0] + i*datetime.timedelta(1) for i in range(visLen + 1)]
 
     # Make labels
-    dayStrings = [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+    dayStrings = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     # Initialize data dictionary with index values
     data = {'index': dayStrings}
