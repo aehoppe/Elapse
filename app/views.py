@@ -4,7 +4,7 @@
 
     This file handles all of the routing for our Flask web app. Each @app.route
     tag corresponds to a page of our website. The user interaction flow is:
-        
+
         index
         |
         upload: Upload .ics files and choose date range
@@ -55,7 +55,6 @@ def upload():
         startMonday = datetime.datetime.strptime(week + '-1', "%Y-W%W-%w")
         global dateRange
         dateRange = startMonday, startMonday + datetime.timedelta(days=6)
-        print dateRange
         file = request.files['icalFile']
         if file and allowed_file(file.filename) and startMonday:
             filename = secure_filename(file.filename)
@@ -77,8 +76,8 @@ def edit():
     ical.parse_ical('app/static/uploads/cal.ics')
     eventStrings = []
     for e in ical.events:
-        print asciify(e.name)
-        eventStrings.append(asciify(e.name))
+        # print asciify(e.name)
+        eventStrings.append(str(e.startTime.month) +'/'+ str(e.startTime.day) + ' ' + e.name)
     return render_template('edit.html', events=eventStrings)
 
 def asciify(strn):
@@ -99,8 +98,9 @@ def choose():
         visChoice = request.form['visChoice']
         # try:
         global ical
-        print ical
-        vis.visualize(ical, visChoice, daterange=daterange)
+        global dateRange
+        with open('vis.json', 'w') as f:
+            f.write(vis.visualize(ical, visChoice, dateRange=dateRange))
         # except:
         #     print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
