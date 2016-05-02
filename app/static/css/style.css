@@ -1,13 +1,17 @@
 html {
-    background: #879c99;
+    background: #222423;
 }
 
 body {
     font-family: helvetica, sans-serif;
     /*background: #272b21;*/
-    background: #879c99;
-    color: #eee;
+    background: #222423;
+    color: #A2A8A3;
     margin-bottom: 60px;
+}
+
+p {
+    color: #A2A8A3;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,12 +25,20 @@ h1 {
 h2 {font-size: 4em;}
 
 a {
-    color: #729f98;
+    /*color: #A2A8A3;*/
+    color: #eee;
     text-decoration: none;
 }
 a:hover {
-    color: #676766;
+    color: white;
     text-decoration: none;
+}
+
+h4 a {
+    color: #A2A8A3;
+}
+h2 a:hover {
+    color: #A2A8A3;
 }
 
 
@@ -34,6 +46,7 @@ a:hover {
 /* NAVBAR STUFF */
 
 .navbar {
+    /*background: #111211;*/
     background: #eee;
 }
 
@@ -47,8 +60,11 @@ a:hover {
 }
 
 .nav.navbar-nav.navbar-right li a {
-    color: #16174f;
+    color: #222423;
     font-weight: bold;
+}
+.nav.navbar-nav.navbar-right li a:hover {
+    color: black;
 }
 
 /* FORMS */
@@ -73,7 +89,7 @@ input[type=file] {
     z-index: -1;
 }
 
-.file + label {
+/*.file + label {
     font-size: 1em;
     font-weight: bold;
     color: #f0eceb;
@@ -93,52 +109,34 @@ input[type=file] {
 .file:focus + label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
-}
+}*/
 
 .week {
-    color: #16174f;
+    color: #A2A8A3;
     background: none;
     padding-left: .25em;
     font-weight: bold;
     border-width: 1.5px;
     border-style: solid;
-    border-color: #16174f;
+    border-color: #A2A8A3;
 }
 .week:hover{
-    background-color: #16174f;
-    color: #729f98;
+    background-color: #A2A8A3;
+    color: #222423;
 }
 
 .submit {
-    color: #16174f;
+    color: #A2A8A3;
     background: none;
     font-size: 1.33em;
     font-weight: bold;
     border-width: 1.5px;
     border-style: solid;
-    border-color: #16174f;
+    border-color: #A2A8A3;
 }
 .submit:hover{
-    background-color: #16174f;
-    color: #729f98;
-}
-
-.next {
-
-}
-
-
-
-
-
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+    background-color: #A2A8A3;
+    color: #222423;
 }
 
 
@@ -156,7 +154,6 @@ input[type=file] {
 }
 
 .container-index {
-    background: #879c99;
     color: #eee;
     display: flex;
     align-items: center;
@@ -232,7 +229,7 @@ input[type=file] {
 }
 
 .inputfile-6 + label {
-    border: 1px solid #16174f;
+    border: 1px solid #A2A8A3;
     background-color: none;
     padding: 0;
 }
@@ -240,7 +237,7 @@ input[type=file] {
 .inputfile-6:focus + label,
 .inputfile-6.has-focus + label,
 .inputfile-6 + label:hover {
-    border-color: #16174f;
+    border-color: #A2A8A3;
     background: none;
 }
 
@@ -262,7 +259,7 @@ input[type=file] {
 
 .inputfile-6 + label strong {
     height: 100%;
-    color: #16174f;
+    color: #A2A8A3;
     background-color: none;
     display: inline-block;
 }
@@ -270,8 +267,8 @@ input[type=file] {
 .inputfile-6:focus + label strong,
 .inputfile-6.has-focus + label strong,
 .inputfile-6 + label:hover strong {
-    background-color: #16174f;
-    color: #879c99;
+    background-color: #A2A8A3;
+    color: #222423;
 }
 
 
