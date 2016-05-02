@@ -74,6 +74,9 @@ def allowed_file(filename):
 # EDIT CALENDAR EVENTS
 @app.route('/edit', methods=['POST', 'GET'])
 def edit():
+    if request.method == 'POST':
+        return redirect(url_for('choose'))
+
     global ical
     ical = Calendar('cal')
     ical.parse_ical('app/static/uploads/cal.ics')

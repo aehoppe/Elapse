@@ -1,10 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> 
         Upload.
     </title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+
     <script type="text/javascript">
         function loadDateRange() {
             var dateRange = document.getElementById("dateRange").value;
@@ -13,56 +20,66 @@
 
     </script>
 </head>
+
 <body>
-    <div class="container-left">
-        <div class="item">
-            <h2>
-                Use Elapse.
-            </h2>
-        </div>
-    </div>
-    <form action="" method="POST" enctype="multipart/form-data" name="icalUpload">
-        <div class="container-vert">
-            <div class="container-left">
-                <div class="item">
-                    <h2>
-                        1
-                    </h2>
-                </div>
-                <div class="item">
-                    <h4>
-                        <span title="You can export your entire calendar as a .ics file!">To start, upload your calendar information as a .ics file</span>
-                    </h4>
-                    <br>
-                    <input type="file" name="icalFile" id="icalFile" required>
-                </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Elapse</a>
             </div>
-            <div class="container-left">
-                <div class="item">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/upload">Use Elapse.</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About the project. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about">Overview.</a></li>
+                        <li><a href="/implementation">Implementation.</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="header">
                     <h2>
-                        2
+                        Use Elapse.
                     </h2>
                 </div>
-                <div class="item">
+                <form action="" method="POST" enctype="multipart/form-data" name="icalUpload">
+                    <h4>
+                        <span title="You can export your entire calendar as a .ics file!">Upload your calendar information as a .ics file.</span>
+                    </h4>
+                    <div class="box">
+                        <input type="file" name="icalFile" id="icalFile" class="file inputfile-6" data-multiple-caption="{count} files selected" multiple />
+                        <label for="icalFile"><span></span> <strong> Choose a .ics file.</strong></label>
+                    </div>
+                    <br><br>
                     <h4>
                         Select a week to visualize.
                     </h4>
-                    <br>
-                    <input type="week" name="dateRange" id="dateRange" placeholder="Your week starts here." value="" onchange=loadDateRange() required>
-                </div>
+                    <input class="week" type="week" name="dateRange" id="dateRange" placeholder="Your week starts here." value="" onchange=loadDateRange() required>
+                    <br><br><br>    
+                    <input class="submit" type="submit" value="Next.">
+
+                </form>
             </div>
         </div>
-        <div class="container-nav">
-            <div class="item">
-                <h3>
-                    <a href="/index"> Home.</a>
-                </h3>
-            </div>
-            <div class="item">
-                <h3>
-                    <input type="submit" value=">">
-                </h3>
-            </div>
-        </div>
-    </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    
 </body>
+
+</html>

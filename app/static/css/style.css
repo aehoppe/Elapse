@@ -1,16 +1,27 @@
+html {
+    background: #879c99;
+}
+
 body {
     font-family: helvetica, sans-serif;
+    /*background: #272b21;*/
+    background: #879c99;
+    color: #eee;
+    margin-bottom: 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: helvetica, sans-serif;
     font-weight: bold;
 }
-h1 {font-size: 5em;}
+h1 {
+    font-size: 5em;
+    color: #16174f;
+}
 h2 {font-size: 4em;}
 
 a {
-    color: #586452;
+    color: #729f98;
     text-decoration: none;
 }
 a:hover {
@@ -22,16 +33,30 @@ a:hover {
 
 /* NAVBAR STUFF */
 
+.navbar {
+    background: #eee;
+}
+
+.navbar-header a {
+    color: #16174f;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    color: #16174f;
+}
+
 .nav.navbar-nav.navbar-right li a {
-    color: #c30058;
+    color: #16174f;
+    font-weight: bold;
 }
 
 /* FORMS */
-
+`
 input[type=submit] {
     border: none;
-    background: none;
-    color: #bd00a2;
+/*    background: none;*/
+    color: black;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -39,6 +64,88 @@ input[type=submit] {
 input[type=file] {
 }
 
+.file {
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file + label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #f0eceb;
+    padding: .1em .25em;
+    background: none;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #f0eceb;
+    display: inline-block;
+    cursor: pointer;
+}
+.file:focus + label,
+.file + label:hover {
+    background-color: #f0eceb;
+    color: #729f98;
+}
+.file:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.week {
+    color: #16174f;
+    background: none;
+    padding-left: .25em;
+    font-weight: bold;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #16174f;
+}
+.week:hover{
+    background-color: #16174f;
+    color: #729f98;
+}
+
+.submit {
+    color: #16174f;
+    background: none;
+    font-size: 1.33em;
+    font-weight: bold;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #16174f;
+}
+.submit:hover{
+    background-color: #16174f;
+    color: #729f98;
+}
+
+.next {
+
+}
+
+
+
+
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+
+.container {
+    color: #f0eceb;
+}
 
 
 .container-left {
@@ -49,7 +156,8 @@ input[type=file] {
 }
 
 .container-index {
-    background: #dfdfdf;
+    background: #879c99;
+    color: #eee;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,4 +220,69 @@ input[type=file] {
   padding-top: 7em;
   padding-bottom: 4em;
   text-align: left;
+}
+
+
+/* CSS file upload customizer */
+/* modified code from Osvaldas Valutis */
+/* http://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
+
+.inputfile-6 + label {
+    color: #d3394c;
+}
+
+.inputfile-6 + label {
+    border: 1px solid #16174f;
+    background-color: none;
+    padding: 0;
+}
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+    border-color: #16174f;
+    background: none;
+}
+
+.inputfile-6 + label span,
+.inputfile-6 + label strong {
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.inputfile-6 + label span {
+    width: 200px;
+    min-height: 2em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.inputfile-6 + label strong {
+    height: 100%;
+    color: #16174f;
+    background-color: none;
+    display: inline-block;
+}
+
+.inputfile-6:focus + label strong,
+.inputfile-6.has-focus + label strong,
+.inputfile-6 + label:hover strong {
+    background-color: #16174f;
+    color: #879c99;
+}
+
+
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
 }

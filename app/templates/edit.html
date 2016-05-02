@@ -1,41 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <title>Edit</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" media="screen" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> 
+        Edit.
+    </title>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+
 </head>
+
 <body>
-    <div class="container-left">
-        <div class="item">
-            <h2>
-                Edit your data.
-            </h2>
-        </div>
-    </div>
-    <div class="container-vert">
-        <div class="item">
-            <ul id="events">
-                {% if events != [] %}
-                {% for event in events %}
-                <li>{{ event }}</li>
-                {% endfor %}
-                {% else %}
-                <p> No events found </p>
-                {% endif %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Elapse</a>
+            </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/upload">Use Elapse.</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About the project. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about">Overview.</a></li>
+                        <li><a href="/implementation">Implementation.</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
-    </div>
-    <div class="container-nav">
-            <div class="item">
-                <h3>
-                    <a href="/upload"> Return to uploader.</a>
-                </h3>
-            </div>
-            <div class="item">
-                <h3>
-                    <a href="/choose"> > </a>
-                </h3>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="header">
+                    <h2>
+                        Edit your data.
+                    </h2>
+                </div>
+                <ul id="events">
+                    {% if events != [] %}
+                    {% for event in events %}
+                    <li>{{ event }}</li>
+                    {% endfor %}
+                    {% else %}
+                    <p> No events found </p>
+                    {% endif %}
+                </ul>
+                <br><br><br> 
+                <form action="" method="POST" enctype="multipart/form-data" name="edit">
+                    <input class="submit" type="button" value="Back." onclick="history.back(-1)">
+                    <input class="submit" type="submit" value="Next.">
+                </form>                
             </div>
         </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    
 </body>
+
 </html>
