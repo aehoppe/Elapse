@@ -10,10 +10,15 @@ import os
 
 
 def visualize(cal, visualization, dateRange=None):
-    """ Takes a file name (could be a file object in the future) and
-    parses its cal data into a Calendar with Events, and a visualization type
-    argument. It also takes an optional date range tuple of datetime objects. It
-    plots the cumulative time for each event in the range specified. """
+    """ Takes an elapseCalendar object, a visualization choice, and a date range.  
+        Generates a vincent visualization with the given information.
+
+        cal: elapseCalendar object
+        visualization: visualization name
+        dateRange: range of time to visualize
+
+        generates: a JSON object for the visualization
+    """
 
     # Set default timezone
     tzDefault = cal.events[0].startTime.tzinfo
@@ -73,7 +78,7 @@ def visualize(cal, visualization, dateRange=None):
     print data
 
     # Dictionary of plotting functions
-    vizzes = {u'stackedArea':stacked_area, u'donut':donut}
+    vizzes = {u'stackedArea':stackedArea, u'donut':donut, u'busy':busy}
 
     # Make plot
     plot = vizzes[visualization](data)
@@ -81,8 +86,9 @@ def visualize(cal, visualization, dateRange=None):
 
     # Generate JSON object to render in HTML template
     plot.to_json('app/static/uploads/vis.json')
+    # plot.to_json('app/static/uploads/vis.json', html_out=True, html_path='app/static/uploads/vis.html')
 
-def stacked_area(data):
+def stackedArea(data):
     """ Creates a stacked area plot visualization """
 
     stacked = vincent.StackedArea(data, iter_idx='index')
@@ -95,14 +101,23 @@ def donut(data):
     """ Creates a donut plot visualization """
 
     # Total the time in each category and give it back as a Pandas dataframe
-    data = total_time(data)
+    data = totalTime(data)
     donut = vincent.Pie(data, inner_radius=200)
     donut.colors(brew="Set3")
     donut.legend('Categories')
     return donut
 
 
-def total_time(data):
+def busy(data):
+    """ Creates a binary busy/free visualization """
+
+    data = totalTime(data)
+    busy = vincent.Pie(data)
+    busy.colors(brew="Set3")
+    return busy
+
+
+def totalTime(data):
     """ Totals up the time in each category in the dataframe """
 
     new_data = {}
@@ -116,9 +131,10 @@ def total_time(data):
 if __name__ == '__main__':
     import sys
     # Debug test of parsing
+
+    visualize('softdes.ics', busy)
     try:
         name = sys.argv[1]
     except IndexError:
-        name = 'stacked_area'
+        name = 'stackedArea'
     visualize('Gaby.ics', name)
-    os.system('firefox vis.html')

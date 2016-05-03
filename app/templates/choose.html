@@ -51,14 +51,26 @@
                     </h2>
                 </div>
                 <form action="/choose" method="POST" enctype="multipart/form-data" name="vizzes">
-                    <label>
-                        <input type="radio" name="visChoice" value="stackedArea" required>
-                        <img src="./static/images/stackedArea.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="visChoice" value="donut" required>
-                        <img src="./static/images/donut.png">
-                    </label>
+                    <div class="container-center">
+                        <div class="item">
+                            <label>
+                                <input type="radio" name="visChoice" value="busy" required>
+                                <img src="./static/images/busy.png" height="150">
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label>
+                                <input type="radio" name="visChoice" value="stackedArea" required>
+                                <img src="./static/images/stackedArea.png" height="125">
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label>
+                                <input type="radio" name="visChoice" value="donut" required>
+                                <img src="./static/images/donut.png" height="150">
+                            </label>
+                        </div>
+                    </div>
                     <br><br><br>
                     <input class="submit" type="button" value="Back." onclick="history.back(-1)">
                     <input class="submit" type="submit" value="Next.">

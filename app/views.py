@@ -59,14 +59,14 @@ def upload():
         global dateRange
         dateRange = startMonday, startMonday + datetime.timedelta(days=6)
         file = request.files['icalFile']
-        if file and allowed_file(file.filename) and startMonday:
+        if file and allowedFile(file.filename) and startMonday:
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/static/uploads/cal.ics'))
             return redirect(url_for('edit'))
 
     return render_template('upload.html')
 
-def allowed_file(filename):
+def allowedFile(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
@@ -79,7 +79,7 @@ def edit():
 
     global ical
     ical = Calendar('cal')
-    ical.parse_ical('app/static/uploads/cal.ics')
+    ical.parseical('app/static/uploads/cal.ics')
     global dateRange
     #timezone-awareness check
     tzDefault = ical.events[0].startTime.tzinfo
@@ -128,8 +128,3 @@ def choose():
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
-
-
-@app.route('/test')
-def test():
-    return render_template('test.html')

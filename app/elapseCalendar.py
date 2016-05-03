@@ -26,7 +26,7 @@ class Calendar(object):
         output += 'calendar {} end'.format(self.name)
         return output
 
-    def parse_ical(self, filename, dateRange=None):
+    def parseical(self, filename, dateRange=None):
         """ Parses an ical (.ics) file, and populates Calendar.events with
             Event objects.
 

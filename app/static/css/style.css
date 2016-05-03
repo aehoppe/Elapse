@@ -41,6 +41,9 @@ h2 a:hover {
     color: #A2A8A3;
 }
 
+img{
+    max-width: 100%;
+}
 
 
 /* NAVBAR STUFF */
@@ -114,7 +117,8 @@ input[type=file] {
 .week {
     color: #A2A8A3;
     background: none;
-    padding-left: .25em;
+    padding: .25em;
+    padding-left: .75em;
     font-weight: bold;
     border-width: 1.5px;
     border-style: solid;
@@ -225,7 +229,8 @@ input[type=file] {
 /* http://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
 
 .inputfile-6 + label {
-    color: #d3394c;
+    /*color: #d3394c;*/
+    color: #A2A8A3;
 }
 
 .inputfile-6 + label {
