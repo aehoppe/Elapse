@@ -24,7 +24,6 @@ parts/
 sdist/
 var/
 flask/
-app/upload/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -72,3 +71,6 @@ target/
 
 #temp files
 *.*~
+
+# Illustrator files
+illustrator/*

@@ -1,6 +1,5 @@
 """ Elapse
     SoftDes Final Project
-
     author: Gaby Clarke, Alex Hoppe
 """
 
@@ -17,14 +16,14 @@ def visualize(filename, visualization, daterange=None):
     plots the cumulative time for each event in the range specified. """
     
     c = elapseCalendar.Calendar('stacked_vis_cal')
-    c.parse_ical('cals/'+filename)
+    c.parseical(filename)
 
     # Set default timezone
     tzDefault = c.events[0].startTime.tzinfo
 
     # Take user input for dates
     if daterange == None:
-        visRange = (datetime.datetime(2016, 3, 28, tzinfo=tzDefault), datetime.datetime(2016, 4, 3, tzinfo=tzDefault))
+        visRange = (datetime.datetime(2016, 5, 1, tzinfo=tzDefault), datetime.datetime(2016, 5, 7, tzinfo=tzDefault))
     else:
         visRange = daterange
 
@@ -57,12 +56,12 @@ def visualize(filename, visualization, daterange=None):
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
     # Dictionary of plotting functions
-    vizzes = {'stacked_area':stacked_area, 'donut':donut}
+    vizzes = {'stacked_area':stacked_area, 'donut':donut, 'busy':busy}
 
     # Make plot
     plot = vizzes[visualization](data)
-    # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('app/vis.json', html_out=False)
+    plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
+    # plot.to_json('vis.json', html_out=False)
 
 
 def stacked_area(data):
@@ -84,6 +83,15 @@ def donut(data):
     donut.legend('Categories')
     return donut
 
+def busy(data):
+    """ Creates a binary busy/free visualization """
+
+    print 'eh'
+    data = totalTime(data)
+    busy = vincent.Pie(data)
+    busy.colors(brew="Set3")
+    return busy
+
 def total_time(data):
     """ Totals up the time in each category in the dataframe """
     
@@ -102,5 +110,4 @@ if __name__ == '__main__':
         name = sys.argv[1]
     except IndexError:
         name = 'stacked_area'
-    visualize('Gaby.ics', name)
-    os.system('firefox vis.html')
+    visualize('softdes.ics', donut)

@@ -1,0 +1,293 @@
+html {
+    background: #222423;
+}
+
+body {
+    font-family: helvetica, sans-serif;
+    /*background: #272b21;*/
+    background: #222423;
+    color: #A2A8A3;
+    margin-bottom: 60px;
+}
+
+p {
+    color: #A2A8A3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: helvetica, sans-serif;
+    font-weight: bold;
+}
+h1 {
+    font-size: 5em;
+}
+h2 {font-size: 4em;}
+
+a {
+    /*color: #A2A8A3;*/
+    color: #eee;
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+h4 a {
+    color: #A2A8A3;
+}
+h2 a:hover {
+    color: #A2A8A3;
+}
+
+img{
+    max-width: 100%;
+}
+
+a img:hover {
+    opacity: .5;
+}
+
+
+/* NAVBAR STUFF */
+
+.navbar {
+    /*background: #111211;*/
+    background: #eee;
+}
+
+.navbar-header a {
+    color: #16174f;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    color: #16174f;
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: #222423;
+    font-weight: bold;
+}
+.nav.navbar-nav.navbar-right li a:hover {
+    color: black;
+}
+
+/* FORMS */
+`
+input[type=submit] {
+    border: none;
+/*    background: none;*/
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input[type=file] {
+}
+
+.file {
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/*.file + label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #f0eceb;
+    padding: .1em .25em;
+    background: none;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #f0eceb;
+    display: inline-block;
+    cursor: pointer;
+}
+.file:focus + label,
+.file + label:hover {
+    background-color: #f0eceb;
+    color: #729f98;
+}
+.file:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}*/
+
+.week {
+    color: #A2A8A3;
+    background: none;
+    padding: .25em;
+    padding-left: .75em;
+    font-weight: bold;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #A2A8A3;
+}
+.week:hover{
+    background-color: #A2A8A3;
+    color: #222423;
+}
+
+.submit {
+    color: #A2A8A3;
+    background: none;
+    font-size: 1.33em;
+    font-weight: bold;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #A2A8A3;
+}
+.submit:hover{
+    background-color: #A2A8A3;
+    color: #222423;
+}
+
+
+
+.container {
+    color: #f0eceb;
+}
+
+
+.container-left {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.container-index {
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container-index-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container-nav {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.container-vert {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.item {
+    max-width: 75%;
+    padding: 2em;
+}
+
+.container-about {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.item-about {
+    flex-shrink: 1;
+    flex-grow: 2;
+}
+
+.item-buffer {
+    width: 20%;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+
+.header {
+  padding-top: 7em;
+  padding-bottom: 4em;
+  text-align: left;
+}
+
+
+/* CSS file upload customizer */
+/* modified code from Osvaldas Valutis */
+/* http://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
+
+.inputfile-6 + label {
+    /*color: #d3394c;*/
+    color: #A2A8A3;
+}
+
+.inputfile-6 + label {
+    border: 1px solid #A2A8A3;
+    background-color: none;
+    padding: 0;
+}
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+    border-color: #A2A8A3;
+    background: none;
+}
+
+.inputfile-6 + label span,
+.inputfile-6 + label strong {
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.inputfile-6 + label span {
+    width: 200px;
+    min-height: 2em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.inputfile-6 + label strong {
+    height: 100%;
+    color: #A2A8A3;
+    background-color: none;
+    display: inline-block;
+}
+
+.inputfile-6:focus + label strong,
+.inputfile-6.has-focus + label strong,
+.inputfile-6 + label:hover strong {
+    background-color: #A2A8A3;
+    color: #222423;
+}
+
+
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
