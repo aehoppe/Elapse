@@ -45,6 +45,10 @@ img{
     max-width: 100%;
 }
 
+img:hover {
+    opacity: .5;
+}
+
 
 /* NAVBAR STUFF */
 
