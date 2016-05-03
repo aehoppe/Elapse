@@ -71,3 +71,6 @@ target/
 
 #temp files
 *.*~
+
+# Illustrator files
+illustrator/*
