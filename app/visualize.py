@@ -112,8 +112,12 @@ def busy(data):
     """ Creates a binary busy/free visualization """
 
     data = totalTime(data)
-    busy = vincent.Pie(data)
-    busy.colors(brew="Set3")
+    busyTime = sum(data.values())
+    unbusyTime = 7*24 - busyTime # 7 days * 24 hours/day
+    business = {'unbusy':unbusyTime, 'busy':busyTime}
+    busy = vincent.Pie(business)
+    busy.colors(brew='BW')
+    busy.legend(title="business")
     return busy
 
 
