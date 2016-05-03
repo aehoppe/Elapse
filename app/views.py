@@ -87,8 +87,9 @@ def edit():
 
     newevents = []
     for event in ical.events:
-        if event.startTime >= dateRange[0] and event.endTime <= dateRange[1]:
-            newevents.append(event)
+        if type(event.startTime) != datetime.date:
+            if event.startTime >= dateRange[0] and event.endTime <= dateRange[1]:
+                newevents.append(event)
     ical.events = newevents
 
     eventStrings = []
@@ -113,6 +114,7 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
+        print visChoice
         # try:
         global ical
         global dateRange

@@ -27,7 +27,7 @@ def visualize(cal, visualization, dateRange=None):
 
     # Take user input for dates
     if dateRange == None:
-        visRange = (datetime.datetime(2016, 5, 1, tzinfo=tzDefault), datetime.datetime(2016, 5, 7, tzinfo=tzDefault))
+        visRange = (datetime.datetime(2016, 5, 2, tzinfo=tzDefault), datetime.datetime(2016, 5, 8, tzinfo=tzDefault))
     else:
         visRange = dateRange
 
@@ -51,9 +51,10 @@ def visualize(cal, visualization, dateRange=None):
 
     # Make labels
     dayStrings = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    labels = [1,2,3,4,5,6,7]
 
     # Initialize data dictionary with index values
-    data = {'index': dayStrings}
+    data = {'index': labels}
 
     for day in daysIncluded:
         print str(day.month) + '/' + str(day.day),
@@ -81,19 +82,21 @@ def visualize(cal, visualization, dateRange=None):
     vizzes = {u'stackedArea':stackedArea, u'donut':donut, u'busy':busy}
 
     # Make plot
+    print visualization
+    print vizzes[visualization]
     plot = vizzes[visualization](data)
-    plot.axis_titles(x='Day of the Week',y='Hours')
 
     # Generate JSON object to render in HTML template
-    plot.to_json('app/static/uploads/vis.json')
-    # plot.to_json('app/static/uploads/vis.json', html_out=True, html_path='app/static/uploads/vis.html')
+    # plot.to_json('app/static/uploads/vis.json')
+    plot.to_json('app/static/uploads/vis.json', html_out=True, html_path='app/static/uploads/vis.html')
 
 def stackedArea(data):
     """ Creates a stacked area plot visualization """
 
-    stacked = vincent.StackedArea(data, iter_idx='index')
+    stacked = vincent.StackedArea(data, iter_idx='index', width=550)
     stacked.legend(title='Categories')
     stacked.colors(brew='Spectral')
+    stacked.axis_titles(x='Day of the Week',y='Hours')
     return stacked
 
 
@@ -102,8 +105,8 @@ def donut(data):
 
     # Total the time in each category and give it back as a Pandas dataframe
     data = totalTime(data)
-    donut = vincent.Pie(data, inner_radius=200)
-    donut.colors(brew="Set3")
+    donut = vincent.Pie(data, inner_radius=200, width=550)
+    donut.colors(brew="Spectral")
     donut.legend('Categories')
     return donut
 
@@ -115,7 +118,9 @@ def busy(data):
     busyTime = sum(data.values())
     unbusyTime = 7*24 - busyTime # 7 days * 24 hours/day
     business = {'unbusy':unbusyTime, 'busy':busyTime}
-    busy = vincent.Pie(business)
+    print business
+    busy = vincent.Pie(business, width=550)
+    print busy
     busy.colors(brew='BW')
     busy.legend(title="business")
     return busy
