@@ -47,19 +47,20 @@ Elapse's other dependencies are listed in [requirements.txt](https://github.com/
 ## Examples
 Below are a few examples of the visualizations that Elapse creates.
 
-Stacked Area:
-![Stacked Area](documentation/gaby_stacked-area_nolegend.png)
+Binary busy/unbusy
+![Busy](documentation/busy.png)
 
-Donut:
-![Donut](documentation/gaby_donut_nolegend.png)
+Temporal time distribution
+![Stacked Area](documentation/gaby_stacked-area.png)
 
-
-
+Cumulative time distribution
+![Donut](documentation/gaby_donut.png)
 
 ## Implementation
 This project was developed with Python, HTML, CSS, and a little bit of JavaScript. 
 
 First, an overview of the user-software interactions that occur when using Elapse:
+
 ![interaction](documentation/interaction.png)
 
 The user starts the interaction by going to [our url] and selecting Use Elapse. from the homepage.  The user is then prompted to upload their calendar data as a .ics file and select a week to visualize.  The ical is received and parsed for events within the selected date range, and these events are stored within our own data structure.  These events are then handed back to the user on a webpage, where the user can edit some of their attributes as desired.  Any necessary modifications to the events stored are then made.  The user is prompted to select a visualization mode, and their calendar information is then visualized on a webpage.
