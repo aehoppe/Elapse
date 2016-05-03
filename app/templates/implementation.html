@@ -52,6 +52,7 @@
                 <p>
                     This project was developed with Python, HTML, CSS, and a little bit of JavaScript.  Our source code can be accessed in our <a href="https://github.com/aehoppe/Elapse">Github repository</a>.  The repository’s README contains all necessary information for running Elapse locally, including all dependency information.
                 </p>
+                <br>
                 <p>
                     First, an overview of the user-software interactions that occur when using Elapse:
                 </p>
@@ -59,10 +60,11 @@
                     [diagram]
                 </p>
                 <p>
-                    The user starts the interaction by going to [our url] and selecting Use Elapse. from the homepage.  The user is then prompted to upload their calendar data as a .ics file and select a week to visualize.  The ical is received and parsed for events within the selected date range, and these events are stored within our own data structure.  These events are then handed back to the user on a webpage, where the user can edit some of their attributes as desired.  Any necessary modifications to the events stored are then made.  The user is prompted to select a visualization mode, and their calendar information is then visualized on a webpage.
+                    The user starts the interaction by going to [our url] and selecting <i>Use Elapse</i> from the homepage, or simply clicking on the header/image, as prompted by the hover effects.  The user is then prompted to upload their calendar data as a .ics file and select a week to visualize.  The ical is received and parsed for events within the selected date range, and these events are stored within our own data structure.  These events are then handed back to the user on a webpage, where the user can edit some of their attributes as desired.  Any necessary modifications to the events stored are then made.  The user is prompted to select a visualization mode, and their calendar information is then visualized on a webpage.
                 </p>
+                <br>
                 <p>
-                    Our backend development was done in Python, and makes use of the <a href="http://flask.pocoo.org">Flask</a> framework for webification.  The users’ upload form was created with <a href="https://flask-wtf.readthedocs.io/en/latest/">flask_wtf</a>.  We parse users’ ical (.ics) files using the <a href="https://github.com/collective/icalendar">icalendar</a> library, and store the data as elapseEvent objects within an elapseCalendar object.  We used the <a href="https://github.com/wrobstory/vincent">vincent</a> library to visualize our data.  Vincent is a wrapper for <a href="https://vega.github.io/vega/">vega</a>, which is a wrapper for <a href="https://d3js.org">d3.js</a>.  We had initially hoped to simply do the visualization and all data processing in JavaScript, but decided to find a Python alternative so that we could focus on improving our Python skills as opposed to working in an entirely unfamiliar language.  With vincent, we generate JSON object for the visualization, which is then rendered in an HTML template.
+                    Our backend development was done in Python, and makes use of the <a href="http://flask.pocoo.org">Flask</a> framework for webification.  The users’ upload form was created with <a href="https://flask-wtf.readthedocs.io/en/latest/">flask_wtf</a>.  We parse users’ ical (.ics) files using the <a href="https://github.com/collective/icalendar">icalendar</a> library, and store the data as elapseEvent objects within an elapseCalendar object.  We use the <a href="https://github.com/wrobstory/vincent">vincent</a> library to visualize our data.  Vincent is a wrapper for <a href="https://vega.github.io/vega/">vega</a>, which is a wrapper for <a href="https://d3js.org">d3.js</a>.  We had initially hoped to simply do the visualization and all data processing in JavaScript, but decided to find a Python alternative so that we could focus on improving our Python skills as opposed to working in an entirely unfamiliar language.  With vincent, we generate a JSON object of the visualization, which is then rendered in an HTML template.
                 </p>
                 <br><br>
                 <div align="center">
@@ -70,10 +72,11 @@
                 </div>
                 <br><br>
                 <p>
-                    On the frontend, we used JavaScript and jQuery to render the visualization JSON object with the HTML template, as well as to generate the user’s event-editing interface.  Within CSS, we made use of flexboxes... The webapp is hosted on <a href="https://dashboard.heroku.com/apps">Heroku</a>.
+                    On the frontend, we use JavaScript and jQuery to render the visualization JSON object with the HTML template, as well as to generate the user’s event-editing interface.  For the website design, we use the <a href="http://getbootstrap.com/">Bootstrap</a> framework, and employ CSS flexboxes in a few cases.  The webapp is hosted on <a href="https://dashboard.heroku.com/apps">Heroku</a>.
                 </p>
+                <br>
                 <p>
-                    Throughout the project, we both reviewed our code with peers and sought feedback from peers regarding design decisions we made...[reflections on code review and technical reviews]...Documentation from these reviews can be found in the <a href="https://github.com/aehoppe/Elapse/tree/master/documentation">documentation directory of our Github repository</a>.
+                    Throughout the project, we both reviewed our code with peers and sought feedback from peers regarding design decisions we faced.  Our code reviewers helped us to realize how important it was for our code to be modular (which we would have probably realized eventually, but they brought it to the foreground), and group ideation sessions with peers helped us to think critically about the types of user interactions we wanted to foster.  Documentation from these reviews can be found in the <a href="https://github.com/aehoppe/Elapse/tree/master/documentation">documentation directory of our Github repository</a>.
                 </p>
                 <br><br><br>
                 <div align="center">
