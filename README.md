@@ -51,10 +51,10 @@ Binary busy/unbusy
 ![Busy](documentation/busy.png)
 
 Temporal time distribution
-![Stacked Area](documentation/gaby_stacked-area.png)
+![Stacked Area](documentation/gaby_stacked-area_nolegend.png)
 
 Cumulative time distribution
-![Donut](documentation/gaby_donut.png)
+![Donut](documentation/gaby_donut_nolegend.png)
 
 ## Implementation
 This project was developed with Python, HTML, CSS, and a little bit of JavaScript. 
