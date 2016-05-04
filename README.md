@@ -61,13 +61,13 @@ This project was developed with Python, HTML, CSS, and a little bit of JavaScrip
 
 First, an overview of the user-software interactions that occur when using Elapse:
 
-![interaction](documentation/interaction.png)
+![interaction](documentation/images/interaction.png)
 
 The user starts the interaction by going to [our url] and selecting Use Elapse. from the homepage.  The user is then prompted to upload their calendar data as a .ics file and select a week to visualize.  The ical is received and parsed for events within the selected date range, and these events are stored within our own data structure.  These events are then handed back to the user on a webpage, where the user can edit some of their attributes as desired.  Any necessary modifications to the events stored are then made.  The user is prompted to select a visualization mode, and their calendar information is then visualized on a webpage.
 
 Our backend development was done in Python, and makes use of the [Flask](http://flask.pocoo.org) framework for webification.  The users’ upload form was created with [flask_wtf](https://flask-wtf.readthedocs.org/en/latest/).  We parse users’ ical (.ics) files using the [icalendar](https://github.com/collective/icalendar) library, and store the data as elapseEvent objects within an elapseCalendar object.  We used the [vincent](https://github.com/wrobstory/vincent) library to visualize our data.  Vincent is a wrapper for [vega](https://vega.github.io/vega/), which is a wrapper for [d3.js](https://d3js.org).  We had initially hoped to simply do the visualization, and all data processing in JavaScript, but decided to find a Python alternative so that we could focus on improving our Python skills as opposed to working in an entirely unfamiliar language.  With vincent, we generate JSON object for the visualization, which is then rendered in an HTML template.
 
-![UML](documentation/UML.png)
+![UML](documentation/images/UML.png)
 
 On the frontend, we use JavaScript and jQuery to render the visualization JSON object with the HTML template, as well as to generate the user’s event-verification interface.  For the website design, we use the [Bootstrap](http://getbootstrap.com) framework, and employ CSS flexboxes in a few cases.  The webapp is hosted on [Heroku](https://www.heroku.com).
 
