@@ -2,7 +2,7 @@
 ##### Elapse is an interactive time visualization webapp that allows busy people to rationalize their busy lives.
 
 ## Using Elapse
-Check out our app at http://quiet-garden-39600.herokuapp.com
+Check out our app at http://elapseapp.herokuapp.com
 
 ## Running Elapse locally
 To run Elapse locally (if you really want to), first clone our git repository.
@@ -56,7 +56,7 @@ Donut:
 
 
 ## Implementation
-This project was developed with Python, HTML, CSS, and a little bit of JavaScript. 
+This project was developed with Python, HTML, CSS, and a little bit of JavaScript.
 
 First, an overview of the user-software interactions that occur when using Elapse:
 [diagram]
