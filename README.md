@@ -48,13 +48,13 @@ Elapse's other dependencies are listed in [requirements.txt](https://github.com/
 Below are a few examples of the visualizations that Elapse creates.
 
 Binary busy/unbusy
-![Busy](documentation/busy.png)
+![Busy](documentation/images/busy.png)
 
 Temporal time distribution
-![Stacked Area](documentation/gaby_stacked-area_nolegend.png)
+![Stacked Area](documentation/images/stackedArea.png)
 
 Cumulative time distribution
-![Donut](documentation/gaby_donut_nolegend.png)
+![Donut](documentation/images/donut.png)
 
 ## Implementation
 This project was developed with Python, HTML, CSS, and a little bit of JavaScript. 
