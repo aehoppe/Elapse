@@ -4,6 +4,7 @@
 
     This file handles all of the routing for our Flask web app. Each @app.route
     tag corresponds to a page of our website. The user interaction flow is:
+
         index
         |
         upload: Upload .ics files and choose date range
@@ -28,16 +29,10 @@ import os
 from elapseCalendar import Calendar
 
 # GLOBAL VARIABLES
-icalFile = 'test'
+ical = None
 visChoice = 'donut'
-daterange = None
+dateRange = None
 
-#+++++++++++++++++++++++++++++
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-#+++++++++++++++++++++++++++++
 
 # INDEX
 @app.route('/')
@@ -45,35 +40,63 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+
 # ABOUT THE PROJECT
 @app.route('/about')
 def about():
     return render_template('about.html')
+@app.route('/implementation')
+def implementation():
+    return render_template('implementation.html')
+
 
 # UPLOAD ICAL
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
-        # startDate = request.form['dateRangeStart']
-        # endDate = request.form['dateRangeEnd']
-        # print type(startDate)
+        week = request.form['dateRange']
+        startMonday = datetime.datetime.strptime(week + '-1', "%Y-W%W-%w")
+        global dateRange
+        dateRange = startMonday, startMonday + datetime.timedelta(days=6)
         file = request.files['icalFile']
-        if file and allowed_file(file.filename):
+        if file and allowedFile(file.filename) and startMonday:
             filename = secure_filename(file.filename)
             file.save(os.path.join('app/static/uploads/cal.ics'))
             return redirect(url_for('edit'))
 
     return render_template('upload.html')
 
-    # return '''
-    # <!doctype html>
-    # <title>Upload new File</title>
-    # <h1>Upload new File</h1>
-    # <form action="" method=post enctype=multipart/form-data>
-    # <p><input type=file name=file>
-    # <input type=submit value=Upload>
-    # </form>
-    # '''
+def allowedFile(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+# EDIT CALENDAR EVENTS
+@app.route('/edit', methods=['POST', 'GET'])
+def edit():
+    if request.method == 'POST':
+        return redirect(url_for('choose'))
+
+    global ical
+    ical = Calendar('cal')
+    ical.parseical('app/static/uploads/cal.ics')
+    global dateRange
+    #timezone-awareness check
+    tzDefault = ical.events[0].startTime.tzinfo
+    dateRange = (dateRange[0].replace(tzinfo=tzDefault), dateRange[1].replace(tzinfo=tzDefault))
+
+    newevents = []
+    for event in ical.events:
+        if type(event.startTime) != datetime.date:
+            if event.startTime >= dateRange[0] and event.endTime <= dateRange[1]:
+                newevents.append(event)
+    ical.events = newevents
+
+    eventStrings = []
+    for e in ical.events:
+        # print asciify(e.name)
+        eventStrings.append(str(e.startTime.month) +'/'+ str(e.startTime.day) + ' ' + e.name)
+    return render_template('edit.html', events=eventStrings)
 
 def asciify(strn):
     output = ''
@@ -84,20 +107,6 @@ def asciify(strn):
             output += char
     return output
 
-# EDIT CALENDAR EVENTS
-@app.route('/edit', methods=['POST', 'GET'])
-def edit():
-    global icalFile
-    icalFile = Calendar('cal')
-    icalFile.parse_ical('app/static/uploads/cal.ics')
-    eventStrings = []
-    for e in icalFile.events:
-        print asciify(e.name)
-        eventStrings.append(asciify(e.name))
-    # print
-    return render_template('edit.html', events=eventStrings)
-
-
 
 # CHOOSE A VISUALIZATION
 @app.route('/choose', methods=['POST', 'GET'])
@@ -105,25 +114,19 @@ def choose():
     if request.method == 'POST':
         global visChoice
         visChoice = request.form['visChoice']
-        try:
-            global icalFile
-            vis.visualize(icalFile, visChoice, daterange=daterange)
-        except:
-            print 'didnt output vis' + str(datetime.datetime.now())
+        print visChoice
+        # try:
+        global ical
+        global dateRange
+        vis.visualize(ical, visChoice, dateRange=dateRange)
+        # except:
+        #     print 'didnt output vis' + str(datetime.datetime.now())
         # theFile= jsonify("vis.json")
         return redirect(url_for('visualize'))
     return render_template('choose.html')
+
 
 # SHOW VISUALIZATION
 @app.route('/visualize', methods=['POST', 'GET'])
 def visualize():
     return render_template('visualize.html')
-
-# @app.route('/vis', methods=['POST', 'GET'])
-# def vis():
-#     return render_template('vis.html')
-
-@app.route('/json/<filename>')
-def json(filename):
-    print filename
-    return send_from_directory(filename)
