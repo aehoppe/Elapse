@@ -1,6 +1,7 @@
 """ Elapse
     SoftDes Final Project
-
+    This file implements our first visualization, parsing an ics file and plots
+    the cumulative time spent on each activity in a stacked area chart.
     author: Gaby Clarke, Alex Hoppe
 """
 
@@ -10,21 +11,22 @@ import datetime
 import os
 
 
-def visualize(filename, visualization, daterange=None):
-    """ Takes a file name (could be a file object in the future) and
-    parses its ical data into a Calendar with Events, and a visualization type
-    argument. It also takes an optional date range tuple of datetime objects. It
-    plots the cumulative time for each event in the range specified. """
-
-    c = elapseCalendar.Calendar('stacked_vis_cal')
-    c.parse_ical('cals/'+filename)
+def vis1(filename, daterange=None):
+    '''
+    This function takes a file name (could be a file object in the future) and
+    parses its ical data into a Calendar with Events. It also takes an optional
+    date range tuple of datetime objects. It plots the cumulative time for each
+    event in the range specified.
+    '''
+    c = elapseCalendar.Calendar('vis1cal')
+    c.parseical(filename)
 
     # Set default timezone
     tzDefault = c.events[0].startTime.tzinfo
 
     # Take user input for dates
     if daterange == None:
-        visRange = (datetime.datetime(2016, 3, 28, tzinfo=tzDefault), datetime.datetime(2016, 4, 3, tzinfo=tzDefault))
+        visRange = (datetime.datetime(2016, 5, 1, tzinfo=tzDefault), datetime.datetime(2016, 5, 7, tzinfo=tzDefault))
     else:
         visRange = daterange
 
@@ -40,7 +42,7 @@ def visualize(filename, visualization, daterange=None):
     # Make labels
     dayStrings = [str(i) for i in range(visLen)]
 
-    # Initialize data dictionary with index values
+    # data = {'index': daysIncluded[:-1]}
     data = {'index': dayStrings}
 
     # Clean data (no date objects allowed) and accumulate total time
@@ -56,39 +58,25 @@ def visualize(filename, visualization, daterange=None):
                         data[event.name] = [0 for day in range(len(daysIncluded)-1)]
                     data[event.name][i] += event.duration.seconds / 60.0**2
 
-    # Dictionary of plotting functions
-    vizzes = {'stackedArea':stackedArea, 'donut':donut}
-
     # Make plot
-    plot = vizzes[visualization](data)
-    # plot.to_json('vis.json', html_out=True, html_path='vis.html') # Test HTML page (vis only)
-    plot.to_json('json/vis.json', html_out=False)
 
+    data = totalTime(data)
+    busyTime = sum(data.values())
+    unbusyTime = 7*24 - busyTime # 7 days * 24 hours/day
+    print busyTime
+    business = {'unbusy':unbusyTime, 'busy':busyTime}
+    busy = vincent.Pie(business)
+    busy.colors(brew='BW')
+    busy.legend(title="business")
+    busy.to_json('vis1.json', html_out=True, html_path='vis1.html')
 
-def stackedArea(data):
-    """ Creates a stacked area plot visualization """
+    # os.system('firefox vis1.html')
 
-    stacked = vincent.StackedArea(data, iter_idx='index')
-    stacked.axis_titles(x='Index', y='Data Value')
-    stacked.legend(title='Categories')
-    stacked.colors(brew='Spectral')
-    return stacked
-
-def donut(data):
-    """ Creates a donut plot visualization """
-
-    #total the time in each category and give it back as a Pandas dataframe
-    data = total_time(data)
-    donut = vincent.Pie(data, inner_radius=200)
-    donut.colors(brew="Set3")
-    donut.legend('Categories')
-    return donut
-
-def total_time(data):
+def totalTime(data):
     """ Totals up the time in each category in the dataframe """
 
     new_data = {}
-    #total up the non-index categories
+    # Total up the non-index categories
     for key in data.keys():
         if not key is 'index':
             new_data[key] = sum(data[key])
@@ -96,11 +84,5 @@ def total_time(data):
 
 
 if __name__ == '__main__':
-    import sys
     # Debug test of parsing
-    try:
-        name = sys.argv[1]
-    except IndexError:
-        name = 'stackedArea'
-    visualize('Gaby.ics', name)
-    os.system('firefox vis.html')
+    vis1('softdes.ics')
