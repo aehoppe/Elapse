@@ -10,7 +10,7 @@ import os
 
 
 def visualize(cal, visualization, dateRange=None):
-    """ Takes an elapseCalendar object, a visualization choice, and a date range.  
+    """ Takes an elapseCalendar object, a visualization choice, and a date range.
         Generates a vincent visualization with the given information.
 
         cal: elapseCalendar object
@@ -56,6 +56,7 @@ def visualize(cal, visualization, dateRange=None):
     # Initialize data dictionary with index values
     data = {'index': labels}
 
+    # debug log the input data to logs
     for day in daysIncluded:
         print str(day.month) + '/' + str(day.day),
     print '\n'
@@ -91,7 +92,8 @@ def visualize(cal, visualization, dateRange=None):
     plot.to_json('app/static/uploads/vis.json', html_out=True, html_path='app/static/uploads/vis.html')
 
 def stackedArea(data):
-    """ Creates a stacked area plot visualization """
+    """ A helper function that creates a stacked area plot visualization object
+    with vincent, that will be called by the index function"""
 
     stacked = vincent.StackedArea(data, iter_idx='index', width=550)
     stacked.legend(title='Categories')
@@ -101,7 +103,7 @@ def stackedArea(data):
 
 
 def donut(data):
-    """ Creates a donut plot visualization """
+    """ Creates a donut plot visualization to be displayed by visualize"""
 
     # Total the time in each category and give it back as a Pandas dataframe
     data = totalTime(data)
