@@ -57,7 +57,7 @@ Cumulative time distribution
 ![Donut](documentation/images/donut.png)
 
 ## Implementation
-This project was developed with Python, HTML, CSS, and a little bit of JavaScript. 
+This project was developed with Python, HTML, CSS, and a little bit of JavaScript.
 
 First, an overview of the user-software interactions that occur when using Elapse:
 
