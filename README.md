@@ -14,7 +14,7 @@ Because we use Flask, we recommend using a virtual environment. The following wi
 
     $ sudo pip2 install virtualenv
     $ python2.7 -m virtualenv flask
-
+ 
 Activate the virtual environment
 
     $ source flask/bin/activate
