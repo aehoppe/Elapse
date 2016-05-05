@@ -1,1 +1,5 @@
-This software design project has been a well-scoped project during which I have improved upon a number of my existing programming skills. 
+I thought this project went fairly well, however it did not really come out to be what I wanted.
+
+When we started making this app, I set out with very vague design goals. One of the things that I wanted to get out of the project was something that would be public, such that I could show it off and have my classmates use it easily. I also thought we had hit on something that could be interesting with our calendar data visualization idea. However, when we ran into a lot of trouble with web development, I found myself getting lost in the details, and I feel like we really lost the original sense of looking at the passage of time in a different way. However, I did feel rather accomplished learning about a new text file standard (.ics).
+
+Technically, I don't think this project was too much of a stretch. However, I learned a lot more about the internals of websites, specifically http requests. I think this is something that will be really useful, because my next big learning project is learning the new fad flavor of javascript so that I can implement cool experimental projects like this with less difficulty.
