@@ -5,10 +5,10 @@ Flask-Babel==0.9
 Flask-Login==0.3.2
 Flask-WTF==0.12
 flipflop==1.0
-gunicorn==19.4.5
+gunicorn>=19.5.0
 icalendar==3.9.2
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2>=2.8.1
 MarkupSafe==0.23
 numpy==1.11.0
 pandas==0.18.0
